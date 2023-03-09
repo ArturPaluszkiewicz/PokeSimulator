@@ -1,7 +1,5 @@
 package org.example.cmdView;
-
 import org.example.model.Trainer;
-
 import java.util.Scanner;
 
 public class CmdView {

@@ -89,6 +89,7 @@ public abstract class AbstractPokemon implements Serializable {
     }
     public void slowAfterAttack(){
         setInitiative(initiative-slowAfterAttack);
+        setNumberOfAttack(numberOfAttack-1);
     }
 
     public String getName() {
@@ -158,8 +159,8 @@ public abstract class AbstractPokemon implements Serializable {
 
     public void setNumberOfAttack(int numberOfAttack) {
         this.numberOfAttack = numberOfAttack;
-        if(this.numberOfAttack<=0){
-            this.numberOfAttack=1;
+        if(this.numberOfAttack<0){
+            this.numberOfAttack=0;
         }
     }
 
