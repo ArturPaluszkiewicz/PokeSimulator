@@ -2,8 +2,8 @@ package org.example.model;
 
 public class Battle {
 
-    private Pokemon pokemonFromTrainer;
-    private WildPokemon wildPokemon;
+    private AbstractPokemon pokemonFromTrainer;
+    private AbstractPokemon wildPokemon;
     private String battleReport;
     private PokeWinner winnerPokemon;
     private PokeBattleToken pokeBattleToken;
@@ -11,10 +11,10 @@ public class Battle {
     private Pokemon pokeTr;
     private WildPokemon pokeWild;
 
-    public Battle(Pokemon pokemonFromTrainer, WildPokemon wildPokemon){
-        this.pokemonFromTrainer = pokemonFromTrainer;
+    public Battle(Pokemon trainersPokemon, AbstractPokemon wildPokemon){
+        this.pokemonFromTrainer = trainersPokemon;
         this.wildPokemon = wildPokemon;
-        this.pokeTr = new Pokemon(pokemonFromTrainer);
+        this.pokeTr = new Pokemon(trainersPokemon);
         this.pokeWild = new WildPokemon(wildPokemon);
         this.winnerPokemon = PokeWinner.NONE;
         this.pokeBattleToken = PokeBattleToken.NONE;
