@@ -7,17 +7,26 @@ public class CmdView {
     Trainer trainer;
 
     public void preStart(){
-        System.out.println("1.-Nowa Gra/2.-Kontynuluj Gre");
-        switch (new Scanner(System.in).nextInt()){
-            case 1 -> {
-                trainer = new Trainer();
-                System.out.println("Twoja przygoda wlasnie sie zaczyna");
+        boolean goNext = true;
+        do{
+            System.out.println("1.-Nowa Gra/2.-Kontynuluj Gre");
+            switch (new Scanner(System.in).nextInt()) {
+                case 1 -> {
+                    trainer = new Trainer();
+                    System.out.println("Twoja przygoda wlasnie sie zaczyna");
+                    goNext = false;
+                }
+                case 2 -> {
+                    try {
+                        trainer = new Trainer("C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\Trainer");
+                        System.out.println("Powracasz do swojej przygody");
+                        goNext = false;
+                    } catch (Exception e) {
+                        System.out.println("Niestety wczytanie gry nie powiodło się ! Zacznij gre od nowa !");
+                    }
+                }
             }
-            case 2 -> {
-                trainer = new Trainer("C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\Trainer");
-                System.out.println("Powracasz do swojej przygody");
-            }
-        }
+        }while(goNext);
     }
     public void start(){
         preStart();

@@ -15,7 +15,7 @@ public class Trainer implements Serializable {
         pokemons.add(new Pokemon("Rattata",1,100,100,5,10,100,2,10,Status.Undefeated,PokeType.Normal));
         location = "Pallet";
     }
-    public Trainer(String url) {
+    public Trainer(String url) throws FileNotFoundException {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(url));
             Trainer trainer = (Trainer) inputStream.readObject();
@@ -24,7 +24,8 @@ public class Trainer implements Serializable {
             location = trainer.getLocation();
             inputStream.close();
         } catch (Exception e) {
-            e.printStackTrace();
+  //          e.printStackTrace();
+            throw new FileNotFoundException("asd");
         }
     }
 
