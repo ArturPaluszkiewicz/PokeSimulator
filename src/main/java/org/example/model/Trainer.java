@@ -7,13 +7,13 @@ import java.util.List;
 public class Trainer implements Serializable {
     private String name;
     private List<Pokemon> pokemons;
-    private String location;
+    private Location location;
 
     public Trainer(){
         name = "Chempion";
         pokemons = new ArrayList<Pokemon>();
         pokemons.add(new Pokemon("Rattata",1,100,100,5,10,100,2,10,Status.Undefeated,PokeType.Normal));
-        location = "Pallet";
+        location = new Location();
     }
     public Trainer(String url) throws FileNotFoundException {
         try {
@@ -45,11 +45,11 @@ public class Trainer implements Serializable {
         this.pokemons = pokemons;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 

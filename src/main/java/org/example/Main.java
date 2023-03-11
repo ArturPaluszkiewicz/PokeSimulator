@@ -8,7 +8,6 @@ public class Main {
        // Pokemon poke1 = new Pokemon("Rattata",1,100,100,5,10,90,2,10,Status.Undefeated,PokeType.Normal);
        // WildPokemon poke2 = new WildPokemon("Caterpie",1,90,90,4,8,80,3,10,Status.Undefeated,PokeType.Normal);
 
-
         new CmdView().start();
     }
 }
