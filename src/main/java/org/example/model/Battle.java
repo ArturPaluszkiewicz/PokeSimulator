@@ -2,7 +2,7 @@ package org.example.model;
 
 public class Battle {
 
-    private AbstractPokemon pokemonFromTrainer;
+    private AbstractPokemon trainersPokemon;
     private AbstractPokemon wildPokemon;
     private String battleReport;
     private PokeWinner winnerPokemon;
@@ -12,7 +12,7 @@ public class Battle {
     private WildPokemon pokeWild;
 
     public Battle(Pokemon trainersPokemon, AbstractPokemon wildPokemon){
-        this.pokemonFromTrainer = trainersPokemon;
+        this.trainersPokemon = trainersPokemon;
         this.wildPokemon = wildPokemon;
         this.pokeTr = new Pokemon(trainersPokemon);
         this.pokeWild = new WildPokemon(wildPokemon);
@@ -22,21 +22,25 @@ public class Battle {
     }
 
     public String letsBattle(){
-        startBattle();
-        duringBattle();
-        endBattle();
-        return battleReport;
+        if(checkIfCanBattle()) {
+            startBattle();
+            duringBattle();
+            endBattle();
+            return battleReport;
+        }
+        else {
+            return battleReport;
+        }
     }
     private void startBattle(){
-        battleReport += ("Rozpoczela się walka pomiedzy twoim "+pokemonFromTrainer.getName()+" a dzikim "+ wildPokemon.getName()+" !\n");
+            battleReport += ("Rozpoczela się walka pomiedzy twoim " + trainersPokemon.getName() + " a dzikim " + wildPokemon.getName() + " !\n");
     }
-
     private void duringBattle(){
         for(int i=1;i<=10;i++){
             battleReport += ("Runda "+i+"\n");
             battleReport += (">"+pokeTr.getName()+": "+pokeTr.getHitPoint()+" zdrowia\n");
             battleReport += (">"+pokeWild.getName()+": "+pokeWild.getHitPoint()+" zdrowia\n");
-            for(int j = 0;j<(pokemonFromTrainer.getNumberOfAttack()+wildPokemon.getNumberOfAttack());j++){
+            for(int j = 0; j<(trainersPokemon.getNumberOfAttack()+wildPokemon.getNumberOfAttack()); j++){
                 if(pokeTr.getNumberOfAttack()>0 && pokeWild.getNumberOfAttack()>0) {
                     if (pokeTr.getInitiative() > pokeWild.getInitiative()) { // atak pokemona gracza (wieksza inicjawtywa)
                         pokeBattleToken = PokeBattleToken.TRAINERS_POKEMON;
@@ -60,9 +64,9 @@ public class Battle {
                 }
             }
 //    End of round
-            pokeTr.setInitiative(pokemonFromTrainer.getInitiative());
+            pokeTr.setInitiative(trainersPokemon.getInitiative());
             pokeWild.setInitiative(wildPokemon.getInitiative());
-            pokeTr.setNumberOfAttack(pokemonFromTrainer.getNumberOfAttack());
+            pokeTr.setNumberOfAttack(trainersPokemon.getNumberOfAttack());
             pokeWild.setNumberOfAttack(wildPokemon.getNumberOfAttack());
         }
 // End of battle
@@ -77,8 +81,19 @@ public class Battle {
         }else {
             battleReport += ("Walka zakonczyla sie remisem.");
         }
-        pokemonFromTrainer.setHitPoint(pokeTr.getHitPoint());
+        trainersPokemon.setHitPoint(pokeTr.getHitPoint());
         wildPokemon.setHitPoint(pokeWild.getHitPoint());
+    }
+
+    private boolean checkIfCanBattle() {
+        if(trainersPokemon.getStatus().equals(Status.Defeated)||trainersPokemon.getHitPoint()<=0){
+            battleReport += ("Twoj pokemon jest nie zdolny do Walki.");
+            return false;
+        } else if (wildPokemon.getStatus().equals(Status.Defeated)||wildPokemon.getHitPoint()<=0) {
+            battleReport += ("Przeciwnik juz jest pokonoany.");
+            return false;
+        }
+        return true;
     }
     private void pokeAttack(){
         if(pokeBattleToken.equals(PokeBattleToken.TRAINERS_POKEMON)){

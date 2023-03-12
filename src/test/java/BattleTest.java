@@ -3,14 +3,15 @@ import org.example.model.PokeType;
 import org.example.model.Pokemon;
 import org.example.model.Status;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class BattleTest {
 
+    Pokemon poke1 = new Pokemon("Rattata",1,100,100,5,10,90,2,10, Status.Undefeated, PokeType.Normal);
+    Pokemon poke2 = new Pokemon("Rattata",1,100,100,5,10,90,2,10,Status.Undefeated,PokeType.Normal);
     @Test
     public void pokemonInitiativeHasNotChangedAfterBattle(){
-        Pokemon poke1 = new Pokemon("Rattata",1,100,100,5,10,90,2,10, Status.Undefeated, PokeType.Normal);
-        Pokemon poke2 = new Pokemon("Rattata",1,100,100,5,10,90,2,10,Status.Undefeated,PokeType.Normal);
         Battle battle = new Battle(poke1,poke2);
         battle.letsBattle();
         Assert.assertEquals(90,poke1.getInitiative());
@@ -19,8 +20,6 @@ public class BattleTest {
 
     @Test
     public void pokemonAttackHasNotChangedAfterBattle(){
-        Pokemon poke1 = new Pokemon("Rattata",1,100,100,5,10,90,2,10, Status.Undefeated, PokeType.Normal);
-        Pokemon poke2 = new Pokemon("Rattata",1,100,100,5,10,90,2,10,Status.Undefeated,PokeType.Normal);
         Battle battle = new Battle(poke1,poke2);
         battle.letsBattle();
         Assert.assertEquals(10,poke1.getAttack());
@@ -28,9 +27,7 @@ public class BattleTest {
     }
 
     @Test
-    public void pokemonDefenceHasNotChangedAfterBattle(){
-        Pokemon poke1 = new Pokemon("Rattata",1,100,100,5,10,90,2,10, Status.Undefeated, PokeType.Normal);
-        Pokemon poke2 = new Pokemon("Rattata",1,100,100,5,10,90,2,10,Status.Undefeated,PokeType.Normal);
+    public void pokemonDefenceHasNotChangedAfterBattle(){;
         Battle battle = new Battle(poke1,poke2);
         battle.letsBattle();
         Assert.assertEquals(5,poke1.getDefence());
@@ -38,8 +35,6 @@ public class BattleTest {
     }
     @Test
     public void pokemonNumberOfAttackHasNotChangedAfterBattle(){
-        Pokemon poke1 = new Pokemon("Rattata",1,100,100,5,10,90,2,10, Status.Undefeated, PokeType.Normal);
-        Pokemon poke2 = new Pokemon("Rattata",1,100,100,5,10,90,2,10,Status.Undefeated,PokeType.Normal);
         Battle battle = new Battle(poke1,poke2);
         battle.letsBattle();
         Assert.assertEquals(2,poke1.getNumberOfAttack());
@@ -47,8 +42,6 @@ public class BattleTest {
     }
     @Test
     public void pokemonPokeTypeHasNotChangedAfterBattle(){
-        Pokemon poke1 = new Pokemon("Rattata",1,100,100,5,10,90,2,10, Status.Undefeated, PokeType.Normal);
-        Pokemon poke2 = new Pokemon("Rattata",1,100,100,5,10,90,2,10,Status.Undefeated,PokeType.Normal);
         Battle battle = new Battle(poke1,poke2);
         battle.letsBattle();
         Assert.assertEquals(PokeType.Normal,poke1.getType());
@@ -56,12 +49,17 @@ public class BattleTest {
     }
     @Test
     public void pokemonMaxHitPointHasNotChangedAfterBattle(){
-        Pokemon poke1 = new Pokemon("Rattata",1,100,100,5,10,90,2,10, Status.Undefeated, PokeType.Normal);
-        Pokemon poke2 = new Pokemon("Rattata",1,100,100,5,10,90,2,10,Status.Undefeated,PokeType.Normal);
         Battle battle = new Battle(poke1,poke2);
         battle.letsBattle();
         Assert.assertEquals(100,poke1.getMaxHitPoint());
         Assert.assertEquals(100,poke2.getMaxHitPoint());
+    }
+
+    @Test
+    public void checkIsNotAllowedToBattleAlreadyDefeatedPokemon(){
+        poke1.setHitPoint(0);
+        Battle battle = new Battle(poke1,poke2);
+        Assert.assertEquals("Twoj pokemon jest nie zdolny do Walki.",battle.letsBattle());
     }
 
 }
