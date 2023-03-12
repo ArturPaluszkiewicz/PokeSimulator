@@ -34,12 +34,15 @@ public class CmdView {
             showMenu();
             switch (new Scanner(System.in).nextInt()){
                 case 1 -> {
-                    new ShowPokemons(trainer);
+                    new CmdLocation(trainer.getLocation()).enterLocation();
                 }
                 case 2 -> {
-                    new GameSave(trainer);
+                    new ShowPokemons(trainer);
                 }
                 case 3 -> {
+                    new GameSave(trainer);
+                }
+                case 4 -> {
                     new PokeExist();
                 }
             }
@@ -47,9 +50,11 @@ public class CmdView {
     }
 
     private void showMenu() {
-        System.out.println("Co robisz");
-        System.out.println("1. - Wyswietl swoje pokemony");
-        System.out.println("2. - Zapisz gre");
-        System.out.println("3. - Wyjscie");
+        System.out.println("Menu Głowne:");
+        System.out.println("Co robisz ?");
+        System.out.println("1. - Wejdz do gry");
+        System.out.println("2. - Wyswietl swoje pokemony");
+        System.out.println("3. - Zapisz gre");
+        System.out.println("4. - Wyjscie");
     }
 }

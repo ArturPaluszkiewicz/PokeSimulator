@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Location implements Serializable {
@@ -14,9 +15,17 @@ public class Location implements Serializable {
     public Location() {
         name = "Pallet";
         description = "Pallet - miasto startowe";
-        pokemonsToBattle = null;
-        connectedLocation = null;
-        action = null;
+        pokemonsToBattle = new ArrayList<Pokemon>();
+        connectedLocation = new ArrayList<String>();
+        action = new ArrayList<String>();
+    }
+
+    public Location(String name){
+        /*
+            Konstruktor do tworzenia lokacji z pliku. Podajesz nazwe pliku ktróy bedzie wyszukiwany
+            w folderze resource/location. Jesli zostanie znaleziony stworzy lokacje na podstawie tego pliku,
+            a jesli nie wyrzuci wyjatek. Do napisania xD
+         */
     }
 
     public Location(String name, String description, List<Pokemon> pokemonsToBattle, List<String> connectedLocation, List<String> action) {
@@ -29,5 +38,21 @@ public class Location implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Pokemon> getPokemonsToBattle() {
+        return pokemonsToBattle;
+    }
+
+    public List<String> getConnectedLocation() {
+        return connectedLocation;
+    }
+
+    public List<String> getAction() {
+        return action;
     }
 }
