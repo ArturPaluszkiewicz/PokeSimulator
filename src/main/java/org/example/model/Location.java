@@ -8,14 +8,18 @@ public class Location implements Serializable {
 
     private String name;
     private String description;
-    private List<Pokemon> pokemonsToBattle;
+    private List<WildPokemon> pokemonsToBattle;
     private List<String> connectedLocation;
     private List<String> action;
 
     public Location() {
         name = "Pallet";
         description = "Pallet - miasto startowe";
-        pokemonsToBattle = new ArrayList<Pokemon>();
+        pokemonsToBattle = new ArrayList<WildPokemon>();
+        WildPokemon poke1 = new WildPokemon("Rattata",1,100,100,5,10,90,2,10,Status.Undefeated,PokeType.Normal);
+        WildPokemon poke2 = new WildPokemon("Caterpie",1,90,90,4,8,80,3,10,Status.Undefeated,PokeType.Normal);
+        pokemonsToBattle.add(poke1);
+        pokemonsToBattle.add(poke2);
         connectedLocation = new ArrayList<String>();
         action = new ArrayList<String>();
     }
@@ -28,7 +32,7 @@ public class Location implements Serializable {
          */
     }
 
-    public Location(String name, String description, List<Pokemon> pokemonsToBattle, List<String> connectedLocation, List<String> action) {
+    public Location(String name, String description, List<WildPokemon> pokemonsToBattle, List<String> connectedLocation, List<String> action) {
         this.name = name;
         this.description = description;
         this.pokemonsToBattle = pokemonsToBattle;
@@ -44,7 +48,7 @@ public class Location implements Serializable {
         return description;
     }
 
-    public List<Pokemon> getPokemonsToBattle() {
+    public List<WildPokemon> getPokemonsToBattle() {
         return pokemonsToBattle;
     }
 

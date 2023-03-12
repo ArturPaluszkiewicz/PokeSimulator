@@ -1,9 +1,6 @@
 package org.example.PokeObcjectCreator;
 
-import org.example.model.Location;
-import org.example.model.PokeType;
-import org.example.model.Pokemon;
-import org.example.model.Status;
+import org.example.model.*;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -16,8 +13,8 @@ public class LocationCreator {
     public LocationCreator(){}
 
     public void createLocation(){
-        List<Pokemon> pokes = new ArrayList<Pokemon>();
-        pokes.add(new Pokemon("Rattata",1,100,100,5,10,90,2,10, Status.Undefeated, PokeType.Normal));
+        List<WildPokemon> pokes = new ArrayList<WildPokemon>();
+        pokes.add(new WildPokemon("Rattata",1,100,100,5,10,90,2,10, Status.Undefeated, PokeType.Normal));
         List<String> conLoc = new ArrayList<String>();
         conLoc.add("Viridian City");
         List<String> actions = new ArrayList<String>();

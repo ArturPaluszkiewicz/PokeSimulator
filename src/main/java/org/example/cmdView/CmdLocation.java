@@ -1,16 +1,17 @@
 package org.example.cmdView;
 
-import org.example.model.Location;
-import org.example.model.Pokemon;
+import org.example.model.*;
 
 import java.util.Scanner;
 
 public class CmdLocation {
     private Location location;
+    private Trainer trainer;
     private boolean isInLocation;
 
-    public CmdLocation(Location location){
+    public CmdLocation(Location location,Trainer trainer){
         this.location=location;
+        this.trainer=trainer;
         isInLocation=false;
     }
 
@@ -47,12 +48,28 @@ public class CmdLocation {
         System.out.println("****************************************************************************************************************************************");
     }
     public void battleWithPokesInLocation(){
-        showPokesInLocation();
+        if(!location.getPokemonsToBattle().isEmpty()) {
+            System.out.println("Z którym pokemonem chcesz walczyc ?");
+            showPokesInLocation();
+            int sc = new Scanner(System.in).nextInt();
+            if(sc>0 && sc<=location.getPokemonsToBattle().size()){
+                if(location.getPokemonsToBattle().get(sc-1).getStatus()== Status.Undefeated) {
+                    System.out.println("Wybrales sobie do walki: " + location.getPokemonsToBattle().get(sc - 1).getName());
+                    pokeBattle(location.getPokemonsToBattle().get(sc-1));
+                }else {
+                    System.out.println("Ten pokemon jest juz pokonany");
+                }
+            }else {
+                System.out.println("Jebac to");
+            }
+        }else{
+            System.out.println("W lokacji nie ma zadnego pokemona.");
+        }
     }
     public void showPokesInLocation(){
         int i = 1;
         if(!location.getPokemonsToBattle().isEmpty()) {
-            for (Pokemon poke : location.getPokemonsToBattle()) {
+            for (WildPokemon poke : location.getPokemonsToBattle()) {
                 System.out.println(i + ". " + poke.getName() + "(" + poke.getLvl() + "): ");
                 System.out.println(" -zycie: (" + poke.getHitPoint() + "/" + poke.getMaxHitPoint() + ")");
                 i++;
@@ -60,6 +77,12 @@ public class CmdLocation {
         }else{
             System.out.println("W lokacji nie ma zadnego pokemona.");
         }
+    }
+    public void pokeBattle(WildPokemon wildPoke){
+        Battle battle = new Battle(trainer.getPokemons().get(0),wildPoke);
+        System.out.println("************************************************************************************************************************");
+        System.out.println(battle.letsBattle());
+        System.out.println("************************************************************************************************************************");
     }
     public void goToOtherLocation(){
         showConnectedLocation();

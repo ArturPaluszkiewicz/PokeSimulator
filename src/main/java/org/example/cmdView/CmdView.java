@@ -34,7 +34,7 @@ public class CmdView {
             showMenu();
             switch (new Scanner(System.in).nextInt()){
                 case 1 -> {
-                    new CmdLocation(trainer.getLocation()).enterLocation();
+                    new CmdLocation(trainer.getLocation(),trainer).enterLocation();
                 }
                 case 2 -> {
                     new ShowPokemons(trainer);
