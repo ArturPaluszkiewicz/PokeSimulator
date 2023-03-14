@@ -8,8 +8,8 @@ import org.junit.Test;
 
 public class BattleTest {
 
-    Pokemon poke1 = new Pokemon("Rattata",1,100,100,5,10,90,2,10, Status.Undefeated, PokeType.Normal);
-    Pokemon poke2 = new Pokemon("Rattata",1,100,100,5,10,90,2,10,Status.Undefeated,PokeType.Normal);
+    Pokemon poke1 = new Pokemon("Rattata",1,100,100,5,10,30,20,90,2,10, Status.Undefeated, PokeType.Normal);
+    Pokemon poke2 = new Pokemon("Rattata",1,100,100,5,10,30,20,90,2,10,Status.Undefeated,PokeType.Normal);
     @Test
     public void pokemonInitiativeHasNotChangedAfterBattle(){
         Battle battle = new Battle(poke1,poke2);

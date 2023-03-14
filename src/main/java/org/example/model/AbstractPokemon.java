@@ -1,8 +1,11 @@
 package org.example.model;
 
+import org.example.model.Moves.PokeMoves;
+
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.List;
 
 public abstract class AbstractPokemon implements Serializable {
 
@@ -12,11 +15,14 @@ public abstract class AbstractPokemon implements Serializable {
     protected int hitPoint;
     protected int defence;
     protected int attack;
+    protected int specialAttack;
+    protected int specialDefense;
     protected int initiative;
     protected int numberOfAttack;
     protected int slowAfterAttack;
     protected Status status;
     protected PokeType type;
+    protected List<PokeMoves> moves;
 
     public AbstractPokemon() {
         name = "Mew";
@@ -25,6 +31,8 @@ public abstract class AbstractPokemon implements Serializable {
         hitPoint = 10000;
         defence = 200;
         attack = 300;
+        specialAttack = 30;
+        specialDefense = 20;
         initiative = 150;
         numberOfAttack = 10;
         slowAfterAttack = 10;
@@ -38,6 +46,8 @@ public abstract class AbstractPokemon implements Serializable {
         this.hitPoint = pokemon.hitPoint;
         this.defence = pokemon.defence;
         this.attack = pokemon.attack;
+        this.specialAttack = pokemon.specialAttack;
+        this.specialDefense = pokemon.specialDefense;
         this.initiative = pokemon.initiative;
         this.numberOfAttack = pokemon.numberOfAttack;
         this.slowAfterAttack = pokemon.slowAfterAttack;
@@ -45,13 +55,15 @@ public abstract class AbstractPokemon implements Serializable {
         this.type = pokemon.type;
     }
 
-    public AbstractPokemon(String name, int lvl, int maxHitPoint, int hitPoint, int defence, int attack, int initiative, int numberOfAttack, int slowAfterAttack, Status status, PokeType type) {
+    public AbstractPokemon(String name, int lvl, int maxHitPoint, int hitPoint, int defence, int attack,int specialAttack,int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, Status status, PokeType type) {
         this.name = name;
         this.lvl = lvl;
         this.maxHitPoint = maxHitPoint;
         this.hitPoint = hitPoint;
         this.defence = defence;
         this.attack = attack;
+        this.specialAttack = specialAttack;
+        this.specialDefense = specialDefense;
         this.initiative = initiative;
         this.numberOfAttack = numberOfAttack;
         this.slowAfterAttack = slowAfterAttack;
@@ -64,11 +76,19 @@ public abstract class AbstractPokemon implements Serializable {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(url));
             Pokemon pokemon = (Pokemon)inputStream.readObject();
             inputStream.close();
-            name = pokemon.getName();
-            lvl = pokemon.getLvl();
-            hitPoint = pokemon.getHitPoint();
-            status = pokemon.getStatus();
-            type = pokemon.getType();
+            this.name = pokemon.name;
+            this.lvl = pokemon.lvl;
+            this.maxHitPoint = pokemon.maxHitPoint;
+            this.hitPoint = pokemon.hitPoint;
+            this.defence = pokemon.defence;
+            this.attack = pokemon.attack;
+            this.specialAttack = pokemon.specialAttack;
+            this.specialDefense = pokemon.specialDefense;
+            this.initiative = pokemon.initiative;
+            this.numberOfAttack = pokemon.numberOfAttack;
+            this.slowAfterAttack = pokemon.slowAfterAttack;
+            this.status = pokemon.status;
+            this.type = pokemon.type;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,6 +104,11 @@ public abstract class AbstractPokemon implements Serializable {
 
     public int takeHit(int damage){
         damage -= defence;
+        setHitPoint(hitPoint-damage);
+        return damage;
+    }
+    public int takeSpecjalHit(int damage){
+        damage -= specialDefense;
         setHitPoint(hitPoint-damage);
         return damage;
     }

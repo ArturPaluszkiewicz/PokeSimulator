@@ -13,7 +13,7 @@ public class PokemonCreator {
 
     }
     public void createPoke() {
-        Pokemon pokemon = new Pokemon("Rattata",1,100,100,5,10,100,2,10, Status.Undefeated, PokeType.Normal);
+        Pokemon pokemon = new Pokemon("Rattata",1,100,100,5,10,30,20,100,2,10, Status.Undefeated, PokeType.Normal);
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\Pokemons\\"+pokemon.getName()));
             outputStream.writeObject(pokemon);
