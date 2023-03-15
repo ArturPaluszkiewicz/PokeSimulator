@@ -3,22 +3,21 @@ package org.example.model.Moves;
 import org.example.model.AbstractPokemon;
 import org.example.model.PokeType;
 
-public class Ember extends PokeMoves{
-
-    public Ember(String name, int lvl) {
-        super(name, lvl, PokeType.Fire,10);
-        scale();
+public class Scratch extends PokeMoves{
+    public Scratch(String name, int lvl) {
+        super(name, lvl,PokeType.Normal,10);
     }
 
     @Override
     public String doMoves(AbstractPokemon poke1, AbstractPokemon poke2) {
-        returnMessage+=(poke1.getName()+" uzyl Ember.\n");
+        returnMessage+=(poke1.getName()+" uzyl Scratch.\n");
         returnMessage+=poke2.getName()+" otrzymał "+poke2.takeSpecialHit(valueOfMove)+" obazen\n";
         return returnMessage;
     }
-
     private void scale(){
         int scaleValue = 20*getLvl();
         setValueOfMove(getValueOfMove()+scaleValue);
     }
+
+
 }

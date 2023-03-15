@@ -3,16 +3,16 @@ package org.example.model.Moves;
 import org.example.model.AbstractPokemon;
 import org.example.model.PokeType;
 
-public class Ember extends PokeMoves{
+public class Bite extends PokeMoves{
 
-    public Ember(String name, int lvl) {
-        super(name, lvl, PokeType.Fire,10);
+    public Bite(String name, int lvl) {
+        super(name, lvl, PokeType.Dark,10);
         scale();
     }
 
     @Override
     public String doMoves(AbstractPokemon poke1, AbstractPokemon poke2) {
-        returnMessage+=(poke1.getName()+" uzyl Ember.\n");
+        returnMessage+=(poke1.getName()+" uzyl Bite.\n");
         returnMessage+=poke2.getName()+" otrzymał "+poke2.takeSpecialHit(valueOfMove)+" obazen\n";
         return returnMessage;
     }
@@ -21,4 +21,5 @@ public class Ember extends PokeMoves{
         int scaleValue = 20*getLvl();
         setValueOfMove(getValueOfMove()+scaleValue);
     }
+
 }

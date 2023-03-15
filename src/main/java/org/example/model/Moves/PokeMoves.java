@@ -1,25 +1,28 @@
 package org.example.model.Moves;
 
 import org.example.model.AbstractPokemon;
+import org.example.model.PokeType;
 
 public abstract class PokeMoves {
 
-    private String name;
-    private int lvl;
+    protected String name;
+    protected int lvl;
+    protected PokeType type;
+    protected int valueOfMove;
+    protected String returnMessage;
 
-    public PokeMoves(String name, int lvl) {
+    public PokeMoves(String name, int lvl,PokeType type,int valueOfMove) {
         this.name = name;
+        this.type=type;
+        this.valueOfMove=valueOfMove;
+        returnMessage="";
         setLvl(lvl);
-        scale();
     }
 
     public String doMoves(AbstractPokemon poke1, AbstractPokemon poke2){
         return "Abstract moves";
     }
 
-    private void scale(){
-
-    }
 
     private void setLvl(int lvl){
         if(lvl>0&&lvl<10){
@@ -31,6 +34,15 @@ public abstract class PokeMoves {
         }
 
     }
+
+    public int getValueOfMove() {
+        return valueOfMove;
+    }
+
+    protected void setValueOfMove(int valueOfMove) {
+        this.valueOfMove = valueOfMove;
+    }
+
     public String getName(){
         return name;
     }

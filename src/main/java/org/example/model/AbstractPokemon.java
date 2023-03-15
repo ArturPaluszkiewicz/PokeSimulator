@@ -107,7 +107,7 @@ public abstract class AbstractPokemon implements Serializable {
         setHitPoint(hitPoint-damage);
         return damage;
     }
-    public int takeSpecjalHit(int damage){
+    public int takeSpecialHit(int damage){
         damage -= specialDefense;
         setHitPoint(hitPoint-damage);
         return damage;
