@@ -6,8 +6,8 @@ import org.example.model.PokeType;
 public class QuickAttack extends PokeMoves{
 
 
-    public QuickAttack(String name, int lvl) {
-        super(name, lvl, PokeType.Normal,5);
+    public QuickAttack(int lvl) {
+        super("QuickAttack", lvl, PokeType.Normal,5);
     }
 
     @Override

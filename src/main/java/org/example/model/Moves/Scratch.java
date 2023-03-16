@@ -4,8 +4,8 @@ import org.example.model.AbstractPokemon;
 import org.example.model.PokeType;
 
 public class Scratch extends PokeMoves{
-    public Scratch(String name, int lvl) {
-        super(name, lvl,PokeType.Normal,10);
+    public Scratch(int lvl) {
+        super("Scratch", lvl,PokeType.Normal,10);
     }
 
     @Override

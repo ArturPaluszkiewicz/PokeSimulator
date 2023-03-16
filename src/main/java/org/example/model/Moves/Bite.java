@@ -5,8 +5,8 @@ import org.example.model.PokeType;
 
 public class Bite extends PokeMoves{
 
-    public Bite(String name, int lvl) {
-        super(name, lvl, PokeType.Dark,10);
+    public Bite(int lvl) {
+        super("Bite", lvl, PokeType.Dark,10);
         scale();
     }
 

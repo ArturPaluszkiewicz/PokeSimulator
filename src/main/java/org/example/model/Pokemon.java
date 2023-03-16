@@ -1,5 +1,9 @@
 package org.example.model;
 
+import org.example.model.Moves.PokeMoves;
+
+import java.util.List;
+
 public class Pokemon extends AbstractPokemon {
 
     public Pokemon(){
@@ -10,7 +14,7 @@ public class Pokemon extends AbstractPokemon {
         super(pokemon);
     }
 
-    public Pokemon(String name, int lvl, int maxHitPoint, int hitPoint, int defence, int attack, int specialAttack, int specialDefense, int initiative, int numberOfAttack,int slowAfterAttack, Status status, PokeType type) {
-        super(name, lvl, maxHitPoint, hitPoint, defence, attack,specialAttack,specialDefense, initiative, numberOfAttack,slowAfterAttack, status, type);
+    public Pokemon(String name, int lvl, int maxHitPoint, int hitPoint, int defence, int attack, int specialAttack, int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, Status status, PokeType type, List<PokeMoves> moves) {
+        super(name, lvl, maxHitPoint, hitPoint, defence, attack,specialAttack,specialDefense, initiative, numberOfAttack,slowAfterAttack, status, type,moves);
     }
 }

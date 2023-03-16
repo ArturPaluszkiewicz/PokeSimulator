@@ -1,5 +1,9 @@
 package org.example.model;
 
+import org.example.model.Moves.PokeMoves;
+
+import java.util.Map;
+
 public class Battle {
 
     private AbstractPokemon trainersPokemon;
@@ -21,7 +25,7 @@ public class Battle {
         this.battleReport = "";
     }
 
-    public String letsBattle(){
+    public String letsBattle(Map<PokeMoves, Integer> trainerPokeMoves){
         if(checkIfCanBattle()) {
             startBattle();
             duringBattle();

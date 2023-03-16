@@ -14,7 +14,7 @@ public class LocationCreator {
 
     public void createLocation(){
         List<WildPokemon> pokes = new ArrayList<WildPokemon>();
-        pokes.add(new WildPokemon("Rattata",1,100,100,5,20,30,10,90,2,10, Status.Undefeated, PokeType.Normal));
+        pokes.add(new WildPokemon());
         List<String> conLoc = new ArrayList<String>();
         conLoc.add("Viridian City");
         List<String> actions = new ArrayList<String>();

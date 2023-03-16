@@ -5,8 +5,8 @@ import org.example.model.PokeType;
 
 public class SuperFang extends PokeMoves{
 
-    public SuperFang(String name, int lvl) {
-        super(name, lvl, PokeType.Normal, 5);
+    public SuperFang(int lvl) {
+        super("Super Fang", lvl, PokeType.Normal, 5);
     }
     @Override
     public String doMoves(AbstractPokemon poke1, AbstractPokemon poke2) {

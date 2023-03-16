@@ -5,8 +5,8 @@ import org.example.model.PokeType;
 
 public class Ember extends PokeMoves{
 
-    public Ember(String name, int lvl) {
-        super(name, lvl, PokeType.Fire,10);
+    public Ember(int lvl) {
+        super("Ember", lvl, PokeType.Fire,10);
         scale();
     }
 

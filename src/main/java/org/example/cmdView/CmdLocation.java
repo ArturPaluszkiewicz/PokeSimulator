@@ -1,8 +1,9 @@
 package org.example.cmdView;
 
 import org.example.model.*;
+import org.example.model.Moves.PokeMoves;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class CmdLocation {
     private Location location;
@@ -81,7 +82,7 @@ public class CmdLocation {
     public void pokeBattle(WildPokemon wildPoke){
         Battle battle = new Battle(trainer.getPokemons().get(0),wildPoke);
         System.out.println("************************************************************************************************************************");
-        System.out.println(battle.letsBattle());
+        System.out.println(battle.letsBattle(choseMovesToBattle(trainer.getPokemons().get(0))));
         System.out.println("************************************************************************************************************************");
     }
     public void goToOtherLocation(){
@@ -93,5 +94,45 @@ public class CmdLocation {
 
     public void returnToMainMenu(){
         isInLocation=false;
+    }
+
+    public Map<PokeMoves, Integer> choseMovesToBattle(Pokemon pokemon){
+        Map<PokeMoves, Integer> movesToUse = new HashMap<PokeMoves, Integer>();
+        ArrayList<PokeMoves> tempPokeMoveList = new ArrayList<PokeMoves>(pokemon.getMoves());
+        ArrayList<Integer> allowedRound = new ArrayList<>();
+        PokeMoves tempPokeMoves = null;
+        int temp = 0;
+        for(int i=0;i<4;i++){
+            System.out.println("Które ruchy uzyc do tej walki ?");
+            System.out.println(showPokeMovesList(tempPokeMoveList));
+            do {
+                temp = new Scanner(System.in).nextInt();
+                if(temp>0&&temp<=tempPokeMoveList.size()){
+                    tempPokeMoves = tempPokeMoveList.get(temp-1);
+                    tempPokeMoveList.remove(temp-1);
+                    break;
+                }
+            }while(true);
+            do {
+                System.out.println("W ktorej rundzie uzyc wybrany ruch ?");
+                temp = new Scanner(System.in).nextInt();
+                if(!allowedRound.contains(temp)){
+                    if (temp > 0 && temp < 11) {
+                        System.out.println("Pomyslnie wybranoc ruch");
+                        allowedRound.add(temp);
+                        break;
+                    }
+                }
+            }while(true);
+        }
+        return movesToUse;
+    }
+    public String showPokeMovesList(ArrayList<PokeMoves> pokeMoves){
+        String returnedString="(|";
+        for(int i=1;i<=pokeMoves.size();i++){
+            returnedString+=i+"."+pokeMoves.get(i-1).getName()+"|";
+        }
+        returnedString+=")";
+        return returnedString;
     }
 }

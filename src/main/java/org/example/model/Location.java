@@ -16,8 +16,8 @@ public class Location implements Serializable {
         name = "Pallet";
         description = "Pallet - miasto startowe";
         pokemonsToBattle = new ArrayList<WildPokemon>();
-        WildPokemon poke1 = new WildPokemon("Rattata",1,100,100,5,10,30,20,90,2,10,Status.Undefeated,PokeType.Normal);
-        WildPokemon poke2 = new WildPokemon("Caterpie",1,90,90,4,8,35,20,80,3,10,Status.Undefeated,PokeType.Normal);
+        WildPokemon poke1 = new WildPokemon();
+        WildPokemon poke2 = new WildPokemon();
         pokemonsToBattle.add(poke1);
         pokemonsToBattle.add(poke2);
         connectedLocation = new ArrayList<String>();
