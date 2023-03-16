@@ -1,7 +1,5 @@
 package org.example.model;
 
-import org.example.model.Moves.PokeMoves;
-
 import java.util.List;
 
 public class WildPokemon extends AbstractPokemon{

@@ -1,7 +1,5 @@
 package org.example.model;
 
-import org.example.model.Moves.*;
-
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -40,10 +38,10 @@ public abstract class AbstractPokemon implements Serializable {
         status = Status.Undefeated;
         type = PokeType.Normal;
         moves = new ArrayList<PokeMoves>();
-        moves.add(new Scratch(1));
-        moves.add(new QuickAttack(1));
-        moves.add(new Bite(1));
-        moves.add(new SuperFang(1));
+        moves.add(new PokeMoves("Scratch"));
+        moves.add(new PokeMoves("Quick Attack"));
+        moves.add(new PokeMoves("Bite"));
+        moves.add(new PokeMoves("Super Fang"));
     }
     public AbstractPokemon(AbstractPokemon pokemon){
         this.name = pokemon.name;

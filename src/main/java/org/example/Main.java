@@ -26,6 +26,7 @@ public class Main {
         -dodac loot do dzikich pokemonow
         -dodac konstruktor do lokacji pobierajacy stringa nazwe lokacji i tworzacy obiekt na podstawie pliku o takiej nazwie w folderze resource/lokation
         -dodac konstruktor do pokemonow pobierajacy stringa i inta , tworzacy obiekt z pliku o takiej nazwie w folderze resources/pokemon i o okreslonym levelu
+        -dodac metode scale do klasy Moves
          */
     }
 }

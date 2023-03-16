@@ -1,7 +1,7 @@
 package org.example.cmdView;
 
 import org.example.model.*;
-import org.example.model.Moves.PokeMoves;
+import org.example.model.PokeMoves;
 
 import java.util.*;
 
@@ -118,7 +118,8 @@ public class CmdLocation {
                 temp = new Scanner(System.in).nextInt();
                 if(!allowedRound.contains(temp)){
                     if (temp > 0 && temp < 11) {
-                        System.out.println("Pomyslnie wybranoc ruch");
+                        System.out.println("Pomyslnie wybrano ruch");
+                        movesToUse.put(tempPokeMoves,temp);
                         allowedRound.add(temp);
                         break;
                     }
