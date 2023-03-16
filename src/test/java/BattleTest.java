@@ -1,8 +1,4 @@
-import org.example.model.Battle;
-import org.example.model.Moves.*;
-import org.example.model.PokeType;
-import org.example.model.Pokemon;
-import org.example.model.Status;
+import org.example.model.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,10 +11,10 @@ public class BattleTest {
     Map<PokeMoves, Integer> pokeMoves = new HashMap<PokeMoves, Integer>();
 
     private void addPokeMoves(){
-        pokeMoves.put(new Ember(1), 1);
-        pokeMoves.put(new QuickAttack(1), 2);
-        pokeMoves.put(new Scratch(1), 3);
-        pokeMoves.put(new Bite(1), 4);
+        pokeMoves.put(new PokeMoves("Ember"), 1);
+        pokeMoves.put(new PokeMoves("QuickAttack"), 2);
+        pokeMoves.put(new PokeMoves("Scratch"), 3);
+        pokeMoves.put(new PokeMoves("Bite"), 4);
     }
     @Test
     public void pokemonInitiativeHasNotChangedAfterBattle(){
