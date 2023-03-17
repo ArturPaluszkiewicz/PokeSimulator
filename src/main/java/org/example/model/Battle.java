@@ -12,6 +12,7 @@ public class Battle {
 
     private Pokemon pokeTr;
     private WildPokemon pokeWild;
+    private Map<Integer, PokeMoves> trainerPokeMoves;
 
     public Battle(Pokemon trainersPokemon, AbstractPokemon wildPokemon){
         this.trainersPokemon = trainersPokemon;
@@ -23,7 +24,8 @@ public class Battle {
         this.battleReport = "";
     }
 
-    public String letsBattle(Map<PokeMoves, Integer> trainerPokeMoves){
+    public String letsBattle(Map<Integer, PokeMoves> trainerPokeMoves){
+        this.trainerPokeMoves=trainerPokeMoves;
         if(checkIfCanBattle()) {
             startBattle();
             duringBattle();
@@ -42,39 +44,51 @@ public class Battle {
             battleReport += ("Runda "+i+"\n");
             battleReport += (">"+pokeTr.getName()+": "+pokeTr.getHitPoint()+" zdrowia\n");
             battleReport += (">"+pokeWild.getName()+": "+pokeWild.getHitPoint()+" zdrowia\n");
+            useMoves(i);
             for(int j = 0; j<(trainersPokemon.getNumberOfAttack()+wildPokemon.getNumberOfAttack()); j++){
-                if(pokeTr.getNumberOfAttack()>0 && pokeWild.getNumberOfAttack()>0) {
-                    if (pokeTr.getInitiative() > pokeWild.getInitiative()) { // atak pokemona gracza (wieksza inicjawtywa)
-                        pokeBattleToken = PokeBattleToken.TRAINERS_POKEMON;
-                    } else if (pokeTr.getInitiative() == pokeWild.getInitiative()) {
-                        if (pokeTr.getNumberOfAttack() >= pokeWild.getNumberOfAttack()) { // atak pokemona gracza (rowna inicjatywa ale wieksza badz rowna ilosc atakow)
-                            pokeBattleToken = PokeBattleToken.TRAINERS_POKEMON;
-                        } else { // atak dzikiego pokemona (rowna inicjawtywa i mniej atakow na runde)
-                            pokeBattleToken = PokeBattleToken.WILD_POKEMON;
-                        }
-                    } else { // atak dzikiego pokemona(mniejsza inicjatywa)
-                        pokeBattleToken = PokeBattleToken.WILD_POKEMON;
-                    }
-                } else if (pokeTr.getNumberOfAttack()>0) {
-                    pokeBattleToken = PokeBattleToken.TRAINERS_POKEMON;
-                }else {
-                    pokeBattleToken = PokeBattleToken.WILD_POKEMON;
-                }
+                battleTokenAssign();
                 pokeAttack();
                 if (!winnerPokemon.equals(PokeWinner.NONE)) {
                     return;
                 }
             }
 //    End of round
-            pokeTr.setInitiative(trainersPokemon.getInitiative());
-            pokeWild.setInitiative(wildPokemon.getInitiative());
-            pokeTr.setNumberOfAttack(trainersPokemon.getNumberOfAttack());
-            pokeWild.setNumberOfAttack(wildPokemon.getNumberOfAttack());
+            endOfRound();
         }
 // End of battle
         winnerPokemon = PokeWinner.DRAW;
     }
 
+    private void useMoves(int numberOfRound) {
+        if(trainerPokeMoves.containsKey(numberOfRound)){
+            battleReport+=trainerPokeMoves.get(numberOfRound).doMoves(pokeTr,pokeWild);
+        }
+    }
+    private void battleTokenAssign(){
+        if(pokeTr.getNumberOfAttack()>0 && pokeWild.getNumberOfAttack()>0) {
+            if (pokeTr.getInitiative() > pokeWild.getInitiative()) { // atak pokemona gracza (wieksza inicjawtywa)
+                pokeBattleToken = PokeBattleToken.TRAINERS_POKEMON;
+            } else if (pokeTr.getInitiative() == pokeWild.getInitiative()) {
+                if (pokeTr.getNumberOfAttack() >= pokeWild.getNumberOfAttack()) { // atak pokemona gracza (rowna inicjatywa ale wieksza badz rowna ilosc atakow)
+                    pokeBattleToken = PokeBattleToken.TRAINERS_POKEMON;
+                } else { // atak dzikiego pokemona (rowna inicjawtywa i mniej atakow na runde)
+                    pokeBattleToken = PokeBattleToken.WILD_POKEMON;
+                }
+            } else { // atak dzikiego pokemona(mniejsza inicjatywa)
+                pokeBattleToken = PokeBattleToken.WILD_POKEMON;
+            }
+        }else if (pokeTr.getNumberOfAttack()>0) {
+            pokeBattleToken = PokeBattleToken.TRAINERS_POKEMON;
+        }else {
+            pokeBattleToken = PokeBattleToken.WILD_POKEMON;
+        }
+    }
+    private void endOfRound(){
+        pokeTr.setInitiative(trainersPokemon.getInitiative());
+        pokeWild.setInitiative(wildPokemon.getInitiative());
+        pokeTr.setNumberOfAttack(trainersPokemon.getNumberOfAttack());
+        pokeWild.setNumberOfAttack(wildPokemon.getNumberOfAttack());
+    }
     private void endBattle(){
         if (winnerPokemon.equals(PokeWinner.TRAINERS_POKEMON)) {
             battleReport += ("Twoj pokemon pokonal dzikiego " + wildPokemon.getName() + ".");

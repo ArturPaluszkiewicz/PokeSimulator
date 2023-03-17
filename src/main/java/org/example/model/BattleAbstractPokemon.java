@@ -1,9 +1,10 @@
 package org.example.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BattleAbstractPokemon {
+public abstract class BattleAbstractPokemon implements Serializable {
     protected int maxHitPoint;
     protected int hitPoint;
     protected int defence;
@@ -30,9 +31,9 @@ public abstract class BattleAbstractPokemon {
         status = Status.Undefeated;
         type = PokeType.Normal;
         moves = new ArrayList<PokeMoves>();
-        moves.add(new PokeMoves("Scratch"));
+       // moves.add(new PokeMoves("Scratch"));
         moves.add(new PokeMoves("Quick Attack"));
-        moves.add(new PokeMoves("Bite"));
+       // moves.add(new PokeMoves("Bite"));
         moves.add(new PokeMoves("Super Fang"));
     }
 

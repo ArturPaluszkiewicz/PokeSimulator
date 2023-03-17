@@ -96,8 +96,8 @@ public class CmdLocation {
         isInLocation=false;
     }
 
-    public Map<PokeMoves, Integer> choseMovesToBattle(Pokemon pokemon){
-        Map<PokeMoves, Integer> movesToUse = new HashMap<PokeMoves, Integer>();
+    public Map<Integer, PokeMoves> choseMovesToBattle(Pokemon pokemon){
+        Map<Integer, PokeMoves> movesToUse = new HashMap<Integer, PokeMoves>();
         ArrayList<PokeMoves> tempPokeMoveList = new ArrayList<PokeMoves>(pokemon.getMoves());
         ArrayList<Integer> allowedRound = new ArrayList<>();
         PokeMoves tempPokeMoves = null;
@@ -125,7 +125,7 @@ public class CmdLocation {
                 if(!allowedRound.contains(temp)){
                     if (temp > 0 && temp < 11) {
                         System.out.println("Pomyslnie wybrano ruch");
-                        movesToUse.put(tempPokeMoves,temp);
+                        movesToUse.put(temp,tempPokeMoves);
                         allowedRound.add(temp);
                         break;
                     }

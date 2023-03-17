@@ -32,11 +32,11 @@ public abstract class AbstractPokemon extends BattleAbstractPokemon implements S
         this.moves = pokemon.moves;
     }
 
-    public AbstractPokemon(String name, int lvl, int maxHitPoint, int hitPoint, int defence, int attack,int specialAttack,int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, Status status, PokeType type,List<PokeMoves> moves) {
+    public AbstractPokemon(String name, int lvl, int maxHitPoint, int defence, int attack,int specialAttack,int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type,List<PokeMoves> moves) {
         this.name = name;
         this.lvl = lvl;
         this.maxHitPoint = maxHitPoint;
-        this.hitPoint = hitPoint;
+        this.hitPoint = maxHitPoint;
         this.defence = defence;
         this.attack = attack;
         this.specialAttack = specialAttack;
@@ -44,14 +44,14 @@ public abstract class AbstractPokemon extends BattleAbstractPokemon implements S
         this.initiative = initiative;
         this.numberOfAttack = numberOfAttack;
         this.slowAfterAttack = slowAfterAttack;
-        this.status = status;
+        this.status = Status.Undefeated;
         this.type = type;
         this.moves = moves;
     }
 
     public AbstractPokemon(String urlName){
         try {
-            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\PokeMoves\\"+urlName));
+            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\Pokemons\\"+urlName));
             Pokemon pokemon = (Pokemon)inputStream.readObject();
             this.name = pokemon.name;
             this.lvl = pokemon.lvl;

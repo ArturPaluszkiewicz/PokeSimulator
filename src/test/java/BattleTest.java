@@ -8,13 +8,13 @@ public class BattleTest {
 
     Pokemon poke1 = new Pokemon();
     Pokemon poke2 = new Pokemon();
-    Map<PokeMoves, Integer> pokeMoves = new HashMap<PokeMoves, Integer>();
+    Map<Integer, PokeMoves> pokeMoves = new HashMap<Integer, PokeMoves>();
 
     private void addPokeMoves(){
-        pokeMoves.put(new PokeMoves("Ember"), 1);
-        pokeMoves.put(new PokeMoves("QuickAttack"), 2);
-        pokeMoves.put(new PokeMoves("Scratch"), 3);
-        pokeMoves.put(new PokeMoves("Bite"), 4);
+        pokeMoves.put(1, new PokeMoves("Ember"));
+        pokeMoves.put(2, new PokeMoves("QuickAttack"));
+        pokeMoves.put(3, new PokeMoves("Scratch"));
+        pokeMoves.put(4, new PokeMoves("Bite"));
     }
     @Test
     public void pokemonInitiativeHasNotChangedAfterBattle(){

@@ -12,7 +12,7 @@ public class Trainer implements Serializable {
     public Trainer(){
         name = "Chempion";
         pokemons = new ArrayList<Pokemon>();
-        pokemons.add(new Pokemon());
+        pokemons.add(new Pokemon("Pikachu"));
         location = new Location();
     }
     public Trainer(String url) throws FileNotFoundException {

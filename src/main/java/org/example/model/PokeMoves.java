@@ -86,7 +86,7 @@ public class PokeMoves implements Serializable {
     }
 
     public String doMoves(AbstractPokemon poke1, AbstractPokemon poke2){
-        returnMessage += (poke1.getName() + " "+name+"\n");
+        returnMessage += (poke1.getName() + " uzyl "+name+"\n");
         if(movesType.equals(PokeMovesType.Attack)) {
             returnMessage += poke2.getName() + " otrzymał " + poke2.takeSpecialHit(valueOfAttackMove) + " obazen\n";
         }
