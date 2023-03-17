@@ -101,19 +101,25 @@ public class CmdLocation {
         ArrayList<PokeMoves> tempPokeMoveList = new ArrayList<PokeMoves>(pokemon.getMoves());
         ArrayList<Integer> allowedRound = new ArrayList<>();
         PokeMoves tempPokeMoves = null;
+        Boolean skipMoves;
         int temp = 0;
         for(int i=0;i<4;i++){
+            skipMoves=false;
             System.out.println("Które ruchy uzyc do tej walki ?");
             System.out.println(showPokeMovesList(tempPokeMoveList));
             do {
                 temp = new Scanner(System.in).nextInt();
+                if(temp==0){
+                    skipMoves=true;
+                    break;
+                }
                 if(temp>0&&temp<=tempPokeMoveList.size()){
                     tempPokeMoves = tempPokeMoveList.get(temp-1);
                     tempPokeMoveList.remove(temp-1);
                     break;
                 }
             }while(true);
-            do {
+            while (!skipMoves){
                 System.out.println("W ktorej rundzie uzyc wybrany ruch ?");
                 temp = new Scanner(System.in).nextInt();
                 if(!allowedRound.contains(temp)){
@@ -124,12 +130,12 @@ public class CmdLocation {
                         break;
                     }
                 }
-            }while(true);
+            }
         }
         return movesToUse;
     }
     public String showPokeMovesList(ArrayList<PokeMoves> pokeMoves){
-        String returnedString="(|";
+        String returnedString="(|0.Pomin|";
         for(int i=1;i<=pokeMoves.size();i++){
             returnedString+=i+"."+pokeMoves.get(i-1).getName()+"|";
         }

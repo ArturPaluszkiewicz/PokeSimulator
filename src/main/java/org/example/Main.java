@@ -19,9 +19,7 @@ public class Main {
         -zmienic wczytywanie gry zeby sprawdzalo czy istnieje plik do odczytu
         -zmienic zapis gry zeby sprawdzal przed zapisem czy istnieje juz plik do zapisu i jesli istnieje to zapytac czy na pewno chcemy go nadpisac
         -dodac mozliwosc wyboru pokemona ktorym chce sie rozpoczac walke
-        -dodac "ataki" do pokemonow.
-        -dodac mozliwosc wybrania 4 atakow na walke przed rozpoczeciem walki{
-                niech wildpokemony maja podczas tworzenia wylosowane 4 z mozliwej puli atakow}
+        -dodac mozliwosc rozpoczecia walki bez wyboru ruchow
         -dodac perki pokemonow
         -dodac loot do dzikich pokemonow
         -dodac konstruktor do lokacji pobierajacy stringa nazwe lokacji i tworzacy obiekt na podstawie pliku o takiej nazwie w folderze resource/lokation

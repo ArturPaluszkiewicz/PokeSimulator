@@ -21,6 +21,7 @@ public class Location implements Serializable {
         pokemonsToBattle.add(poke1);
         pokemonsToBattle.add(poke2);
         connectedLocation = new ArrayList<String>();
+        //zmiast akcji zrobic liste flag lokacji(np-lokacja z sklepem bedzie miec flage sklep, lokacja z poke center flage pokecenter itd)
         action = new ArrayList<String>();
     }
 
