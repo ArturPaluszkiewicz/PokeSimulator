@@ -2,6 +2,7 @@ package org.example.PokeObcjectCreator;
 
 import org.example.cmdView.CmdView;
 
+import java.awt.*;
 import java.util.Scanner;
 
 public class PokeCreatorMain {
@@ -10,6 +11,13 @@ public class PokeCreatorMain {
         LocationCreator lc = new LocationCreator();
         ItemCreator ic = new ItemCreator();
         MovesCreator mc = new MovesCreator();
+
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new PokeCreatorJFrame();
+            }
+        });
 
 
         System.out.println("Witamy w creatorze PokeObiektow:");
