@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Pokemon extends AbstractPokemon implements Serializable {
 
+
     public Pokemon(){
         super();
     }

@@ -17,46 +17,34 @@ public class BattleTest {
         pokeMoves.put(4, new PokeMoves("Bite"));
     }
     @Test
-    public void pokemonInitiativeHasNotChangedAfterBattle(){
+    public void pokemonStatisticHasNotChangedAfterBattle(){
         Battle battle = new Battle(poke1,poke2);
         battle.letsBattle(pokeMoves);
+        //Initiative
         Assert.assertEquals(90,poke1.getInitiative());
         Assert.assertEquals(90,poke2.getInitiative());
-    }
-
-    @Test
-    public void pokemonAttackHasNotChangedAfterBattle(){
-        Battle battle = new Battle(poke1,poke2);
-        battle.letsBattle(pokeMoves);
+        //Attack
         Assert.assertEquals(10,poke1.getAttack());
         Assert.assertEquals(10,poke2.getAttack());
-    }
-
-    @Test
-    public void pokemonDefenceHasNotChangedAfterBattle(){;
-        Battle battle = new Battle(poke1,poke2);
-        battle.letsBattle(pokeMoves);
+        //Defense
         Assert.assertEquals(5,poke1.getDefence());
         Assert.assertEquals(5,poke2.getDefence());
-    }
-    @Test
-    public void pokemonNumberOfAttackHasNotChangedAfterBattle(){
-        Battle battle = new Battle(poke1,poke2);
-        battle.letsBattle(pokeMoves);
+        //NumberOfAttack
         Assert.assertEquals(2,poke1.getNumberOfAttack());
         Assert.assertEquals(2,poke2.getNumberOfAttack());
-    }
-    @Test
-    public void pokemonPokeTypeHasNotChangedAfterBattle(){
-        Battle battle = new Battle(poke1,poke2);
-        battle.letsBattle(pokeMoves);
+        //SpecialAttack
+        Assert.assertEquals(30,poke1.getSpecialAttack());
+        Assert.assertEquals(30,poke2.getSpecialAttack());
+        //SpecialDefense
+        Assert.assertEquals(20, poke1.getSpecialDefense());
+        Assert.assertEquals(20, poke2.getSpecialDefense());
+        //SlowAfterAttack
+        Assert.assertEquals(10, poke1.getSlowAfterAttack());
+        Assert.assertEquals(10,poke2.getSlowAfterAttack());
+        //PokeType
         Assert.assertEquals(PokeType.Normal,poke1.getType());
         Assert.assertEquals(PokeType.Normal,poke2.getType());
-    }
-    @Test
-    public void pokemonMaxHitPointHasNotChangedAfterBattle(){
-        Battle battle = new Battle(poke1,poke2);
-        battle.letsBattle(pokeMoves);
+        //MaxHitPoints
         Assert.assertEquals(100,poke1.getMaxHitPoint());
         Assert.assertEquals(100,poke2.getMaxHitPoint());
     }
