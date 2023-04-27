@@ -11,39 +11,69 @@ public class PokeCreatorJFrame extends JFrame implements ActionListener {
     JButton createMove = new JButton("Stworz Ruch");
     JButton createLocation = new JButton("Stworz Lokacje");
     JButton createItem = new JButton("Stworz Item");
-    JTextArea centerArea = new JTextArea();
+
+    JLabel menu = new JLabel("Menu");
+
+    JPanel leftPanel = new JPanel();
+    JPanel verticalBorder = new JPanel();
+    JPanel horizontalBorder = new JPanel();
+    JPanel rightPanel = new JPanel();
+
+    MovesCreatorJPanel mCJPanel = new MovesCreatorJPanel();
 
     public PokeCreatorJFrame(){
         super("Pokemon Creator");
-        JPanel leftPanel = new JPanel(new GridLayout(0,1));
-        JPanel topPanel = new JPanel();
-        JPanel botPanel = new JPanel();
-        JPanel rightPanel = new JPanel();
-        JPanel centerPanel = new JPanel();
-        setBounds(400,200,700,500);
-
-        createPokemon.addActionListener(this);
-        leftPanel.add(createPokemon);
-
-        createMove.addActionListener(this);
-        leftPanel.add(createMove);
-
-        createLocation.addActionListener(this);
-        leftPanel.add(createLocation);
-
-        createItem.addActionListener(this);
-        leftPanel.add(createItem);
-
-        centerArea.setPreferredSize(new Dimension(400,400));
-        centerPanel.add(centerArea);
-
-        add(leftPanel, BorderLayout.LINE_START);
-        add(topPanel, BorderLayout.PAGE_START);
-        add(botPanel, BorderLayout.PAGE_END);
-        add(rightPanel, BorderLayout.LINE_END);
-        add(centerPanel, BorderLayout.CENTER);
+        setBounds(220,30,1400,1000);
+        setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
+
+
+        leftPanel.setBounds(0,0,250,961);
+        leftPanel.setLayout(null);
+
+        verticalBorder.setBounds(250,0,20,961);
+        verticalBorder.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+        verticalBorder.setBackground(Color.DARK_GRAY);
+
+        horizontalBorder.setBounds(268,60,1130,20);
+        horizontalBorder.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+        horizontalBorder.setBackground(Color.DARK_GRAY);
+
+        rightPanel.setBounds(270,0,1150,961);
+
+        mCJPanel.setBounds(270,80,1130,961);
+
+        menu.setBounds(0,60,254,20);
+        menu.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+        menu.setHorizontalAlignment(JLabel.CENTER);
+        menu.setBackground(Color.DARK_GRAY);
+        menu.setOpaque(true);
+        menu.setForeground(Color.WHITE);
+
+        createPokemon.setBounds(10,100,230,100);
+        createPokemon.addActionListener(this);
+
+        createMove.setBounds(10,210,230,100);
+        createMove.addActionListener(this);
+
+        createLocation.setBounds(10,320,230,100);
+        createLocation.addActionListener(this);
+
+        createItem.setBounds(10,430,230,100);
+        createItem.addActionListener(this);
+
+       // add(rightPanel);
+        add(horizontalBorder);
+        add(verticalBorder);
+        add(leftPanel);
+        add(mCJPanel);
+        leftPanel.add(menu);
+        leftPanel.add(createPokemon);
+        leftPanel.add(createMove);
+        leftPanel.add(createLocation);
+        leftPanel.add(createItem);
+
         setVisible(true);
     }
 
@@ -51,16 +81,26 @@ public class PokeCreatorJFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if(source==createPokemon){
-            centerArea.append("Stworzono Pokemona\n");
+           // new PokemonCreator().createPoke();
+            mCJPanel.setVisible(false);
         }
         if(source==createMove){
-            centerArea.append("Stworzono Ruch\n");
+          //  new MovesCreator().createMoves();
+            mCJPanel.setVisible(true);
+            moveCreatorPanel();
         }
         if(source==createLocation){
-            centerArea.append("Stworzono Lokacje\n");
+           // new LocationCreator().createLocation();
+            mCJPanel.setVisible(false);
         }
         if(source==createItem){
-            centerArea.append("Stworzono Przedmiot\n");
+            mCJPanel.setVisible(false);
         }
+    }
+
+    void pokemonCreatorPanel(){
+
+    }
+    void moveCreatorPanel(){
     }
 }

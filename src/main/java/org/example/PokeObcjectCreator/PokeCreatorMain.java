@@ -31,7 +31,6 @@ public class PokeCreatorMain {
             switch (new Scanner(System.in).nextInt()){
                 case 1 -> {
                     pc.createPoke();
-
                 }
                 case 2 -> {
                     lc.createLocation();

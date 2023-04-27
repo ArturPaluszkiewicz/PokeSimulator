@@ -29,17 +29,17 @@ public class PokemonCreator {
     public PokemonCreator(){
     }
     public void createPoke() {
-        name = "Pikachu";
+        name = "Rattata";
         lvl = 1;
-        maxHitPoint = 200;
+        maxHitPoint = 100;
         defence = 10;
         attack = 20;
         specialAttack = 30;
         specialDefence = 20;
-        initiative = 120;
-        numberOfAttack = 3;
+        initiative = 100;
+        numberOfAttack = 2;
         slowAfterAttack = 10;
-        PokeType pokeType = PokeType.Electric;
+        PokeType pokeType = PokeType.Normal;
         List<PokeMoves> tempMoves = new ArrayList<>();
         tempMoves.add(new PokeMoves("Scratch"));
         tempMoves.add(new PokeMoves("Quick Attack"));
