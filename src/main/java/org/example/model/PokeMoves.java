@@ -7,14 +7,10 @@ import java.io.Serializable;
 
 public class PokeMoves implements Serializable {
 
-    private String name;
-    private String description;
+    private String name, description, returnMessage;
     private int lvl;
     private PokeType type;
-    private int valueOfAttackMove;
-    private int valueOfBuffMoves;
-    private int valueOfDebuffMoves;
-    private String returnMessage;
+    private int valueOfAttackMove, valueOfBuffMoves, valueOfDebuffMoves;
     private PokeMovesType movesType;
     private PokeMovesScaleType pokeMovesScaleType;
     private PokeMovesBattleFlag pokeMovesBattleFlag;

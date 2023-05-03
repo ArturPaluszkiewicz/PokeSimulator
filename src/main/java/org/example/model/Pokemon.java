@@ -3,13 +3,18 @@ package org.example.model;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pokemon extends AbstractPokemon implements Serializable {
 
+    //Pokemons Perks
+    protected List<PokePerks> perks;
 
+    //Constructors
     public Pokemon(){
         super();
+        perks = new ArrayList<PokePerks>();
     }
     public Pokemon(String nameUrl){
         try {
@@ -28,18 +33,24 @@ public class Pokemon extends AbstractPokemon implements Serializable {
             this.slowAfterAttack = pokemon.slowAfterAttack;
             this.status = pokemon.status;
             this.type = pokemon.type;
-            this.moves=pokemon.getMoves();
+            this.moves = pokemon.getMoves();
+            this.perks = pokemon.getPerks();
             inputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    public Pokemon(AbstractPokemon pokemon){
+    public Pokemon(Pokemon pokemon){
         super(pokemon);
+        this.perks = pokemon.getPerks();
+    }
+    public Pokemon(String name, int lvl, int maxHitPoint, int defence, int attack, int specialAttack, int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type, List<PokeMoves> moves, List<PokePerks> perks) {
+        super(name, lvl, maxHitPoint, defence, attack, specialAttack, specialDefense, initiative, numberOfAttack, slowAfterAttack, type, moves);
+        this.perks = perks;
     }
 
-    public Pokemon(String name, int lvl, int maxHitPoint, int defence, int attack, int specialAttack, int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type, List<PokeMoves> moves) {
-        super(name, lvl, maxHitPoint, defence, attack,specialAttack,specialDefense, initiative, numberOfAttack, slowAfterAttack, type,moves);
+    //Getters
+    public List<PokePerks> getPerks() {
+        return perks;
     }
 }

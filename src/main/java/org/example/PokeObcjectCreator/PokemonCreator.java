@@ -1,9 +1,6 @@
 package org.example.PokeObcjectCreator;
 
-import org.example.model.PokeMoves;
-import org.example.model.PokeType;
-import org.example.model.Pokemon;
-import org.example.model.Status;
+import org.example.model.*;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -44,7 +41,8 @@ public class PokemonCreator {
         tempMoves.add(new PokeMoves("Scratch"));
         tempMoves.add(new PokeMoves("Quick Attack"));
         tempMoves.add(new PokeMoves("Bite"));
-        Pokemon pokemon = new Pokemon(name,lvl,maxHitPoint,defence,attack,specialAttack,specialDefence,initiative,numberOfAttack,slowAfterAttack,pokeType,tempMoves);
+        List<PokePerks> perks = new ArrayList<PokePerks>();
+        Pokemon pokemon = new Pokemon(name,lvl,maxHitPoint,defence,attack,specialAttack,specialDefence,initiative,numberOfAttack,slowAfterAttack,pokeType,tempMoves,perks);
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\Pokemons\\"+pokemon.getName()));
             outputStream.writeObject(pokemon);
