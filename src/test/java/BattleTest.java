@@ -1,4 +1,6 @@
 import org.example.model.*;
+import org.example.model.PokeMoves.AttackMove;
+import org.example.model.PokeMoves.PokeMoves;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,10 +13,10 @@ public class BattleTest {
     Map<Integer, PokeMoves> pokeMoves = new HashMap<Integer, PokeMoves>();
 
     private void addPokeMoves(){
-        pokeMoves.put(1, new PokeMoves("Ember"));
-        pokeMoves.put(2, new PokeMoves("QuickAttack"));
-        pokeMoves.put(3, new PokeMoves("Scratch"));
-        pokeMoves.put(4, new PokeMoves("Bite"));
+        pokeMoves.put(1, new AttackMove("Ember"));
+        pokeMoves.put(2, new AttackMove("QuickAttack"));
+        pokeMoves.put(3, new AttackMove("Scratch"));
+        pokeMoves.put(4, new AttackMove("Bite"));
     }
     @Test
     public void pokemonStatisticHasNotChangedAfterBattle(){

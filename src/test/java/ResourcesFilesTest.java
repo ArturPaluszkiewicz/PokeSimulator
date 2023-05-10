@@ -1,5 +1,5 @@
 
-import org.example.model.PokeMoves;
+import org.example.model.PokeMoves.AttackMove;
 import org.example.model.Pokemon;
 import org.junit.Test;
 
@@ -24,7 +24,7 @@ public class ResourcesFilesTest {
         File pokemonDirectory = new File("C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\PokeMoves");
         List<String> pokeMovesList = Arrays.stream(pokemonDirectory.list()).toList();
         for(String pokeMoves: pokeMovesList){
-            new PokeMoves(pokeMoves);
+            new AttackMove(pokeMoves);
             System.out.println(pokeMoves+" git");
         }
         System.out.println("koniec testu");

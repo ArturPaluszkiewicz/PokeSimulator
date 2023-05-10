@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.model.PokeMoves.AttackMove;
+
 import java.util.List;
 
 public interface BattlePokemon {
@@ -29,5 +31,5 @@ public interface BattlePokemon {
     public int getSlowAfterAttack();
     public Status getStatus();
     public PokeType getType();
-    public List<PokeMoves> getMoves();
+    public List<AttackMove> getMoves();
 }

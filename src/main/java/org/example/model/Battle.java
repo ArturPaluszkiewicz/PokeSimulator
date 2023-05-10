@@ -1,5 +1,8 @@
 package org.example.model;
 
+import org.example.model.PokeMoves.AttackMove;
+import org.example.model.PokeMoves.PokeMoves;
+
 import java.util.Map;
 
 public class Battle {
@@ -9,7 +12,6 @@ public class Battle {
     private String battleReport;
     private PokeWinner winnerPokemon;
     private PokeBattleToken pokeBattleToken;
-
     private Pokemon pokeTr;
     private WildPokemon pokeWild;
     private Map<Integer, PokeMoves> trainerPokeMoves;
@@ -61,7 +63,7 @@ public class Battle {
 
     private void useMoves(int numberOfRound) {
         if(trainerPokeMoves.containsKey(numberOfRound)){
-            battleReport+=trainerPokeMoves.get(numberOfRound).doMoves(pokeTr,pokeWild);
+            battleReport+=trainerPokeMoves.get(numberOfRound).useMove(pokeTr,pokeWild);
         }
     }
     private void battleTokenAssign(){

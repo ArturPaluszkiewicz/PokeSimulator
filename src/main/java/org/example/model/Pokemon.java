@@ -1,5 +1,8 @@
 package org.example.model;
 
+import org.example.model.PokeMoves.AttackMove;
+import org.example.model.PokePerks.PokePerks;
+
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -44,7 +47,7 @@ public class Pokemon extends AbstractPokemon implements Serializable {
         super(pokemon);
         this.perks = pokemon.getPerks();
     }
-    public Pokemon(String name, int lvl, int maxHitPoint, int defence, int attack, int specialAttack, int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type, List<PokeMoves> moves, List<PokePerks> perks) {
+    public Pokemon(String name, int lvl, int maxHitPoint, int defence, int attack, int specialAttack, int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type, List<AttackMove> moves, List<PokePerks> perks) {
         super(name, lvl, maxHitPoint, defence, attack, specialAttack, specialDefense, initiative, numberOfAttack, slowAfterAttack, type, moves);
         this.perks = perks;
     }

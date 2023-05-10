@@ -1,6 +1,8 @@
 package org.example.PokeObcjectCreator;
 
 import org.example.model.*;
+import org.example.model.PokeMoves.AttackMove;
+import org.example.model.PokePerks.PokePerks;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -22,7 +24,7 @@ public class PokemonCreator {
     private int numberOfAttack;
     private int slowAfterAttack;
     private PokeType pokeType;
-    private List<PokeMoves> tempMoves;
+    private List<AttackMove> tempMoves;
     public PokemonCreator(){
     }
     public void createPoke() {
@@ -37,10 +39,10 @@ public class PokemonCreator {
         numberOfAttack = 2;
         slowAfterAttack = 10;
         PokeType pokeType = PokeType.Normal;
-        List<PokeMoves> tempMoves = new ArrayList<>();
-        tempMoves.add(new PokeMoves("Scratch"));
-        tempMoves.add(new PokeMoves("Quick Attack"));
-        tempMoves.add(new PokeMoves("Bite"));
+        List<AttackMove> tempMoves = new ArrayList<>();
+        tempMoves.add(new AttackMove("Scratch"));
+        tempMoves.add(new AttackMove("Quick Attack"));
+        tempMoves.add(new AttackMove("Bite"));
         List<PokePerks> perks = new ArrayList<PokePerks>();
         Pokemon pokemon = new Pokemon(name,lvl,maxHitPoint,defence,attack,specialAttack,specialDefence,initiative,numberOfAttack,slowAfterAttack,pokeType,tempMoves,perks);
         try {

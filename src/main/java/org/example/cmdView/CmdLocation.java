@@ -1,7 +1,8 @@
 package org.example.cmdView;
 
 import org.example.model.*;
-import org.example.model.PokeMoves;
+import org.example.model.PokeMoves.AttackMove;
+import org.example.model.PokeMoves.PokeMoves;
 
 import java.util.*;
 
@@ -98,9 +99,9 @@ public class CmdLocation {
 
     public Map<Integer, PokeMoves> choseMovesToBattle(Pokemon pokemon){
         Map<Integer, PokeMoves> movesToUse = new HashMap<Integer, PokeMoves>();
-        ArrayList<PokeMoves> tempPokeMoveList = new ArrayList<PokeMoves>(pokemon.getMoves());
+        ArrayList<AttackMove> tempPokeMoveList = new ArrayList<AttackMove>(pokemon.getMoves());
         ArrayList<Integer> allowedRound = new ArrayList<>();
-        PokeMoves tempPokeMoves = null;
+        AttackMove tempPokeMoves = null;
         Boolean skipMoves;
         int temp = 0;
         for(int i=0;i<4;i++){
@@ -134,7 +135,7 @@ public class CmdLocation {
         }
         return movesToUse;
     }
-    public String showPokeMovesList(ArrayList<PokeMoves> pokeMoves){
+    public String showPokeMovesList(ArrayList<AttackMove> pokeMoves){
         String returnedString="(|0.Pomin|";
         for(int i=1;i<=pokeMoves.size();i++){
             returnedString+=i+"."+pokeMoves.get(i-1).getName()+"|";

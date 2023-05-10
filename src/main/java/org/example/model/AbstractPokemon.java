@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.model.PokeMoves.AttackMove;
+
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -16,7 +18,7 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
     protected int maxHitPoint, hitPoint, defence, attack, specialAttack, specialDefense, initiative, numberOfAttack, slowAfterAttack;
     protected Status status;
     // moves and perks
-    protected List<PokeMoves> moves;
+    protected List<AttackMove> moves;
 
     //Constructors
     public AbstractPokemon() {
@@ -33,11 +35,11 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
         numberOfAttack = 2;
         slowAfterAttack = 10;
         status = Status.Undefeated;
-        moves = new ArrayList<PokeMoves>();
+        moves = new ArrayList<AttackMove>();
         // moves.add(new PokeMoves("Scratch"));
-        moves.add(new PokeMoves("Quick Attack"));
+        moves.add(new AttackMove("Quick Attack"));
         // moves.add(new PokeMoves("Bite"));
-        moves.add(new PokeMoves("Super Fang"));
+        moves.add(new AttackMove("Super Fang"));
     }
     public AbstractPokemon(AbstractPokemon pokemon){
         this.name = pokemon.name;
@@ -55,7 +57,7 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
         this.type = pokemon.type;
         this.moves = pokemon.getMoves();
     }
-    public AbstractPokemon(String name, int lvl, int maxHitPoint, int defence, int attack,int specialAttack,int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type,List<PokeMoves> moves) {
+    public AbstractPokemon(String name, int lvl, int maxHitPoint, int defence, int attack,int specialAttack,int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type,List<AttackMove> moves) {
         this.name = name;
         this.lvl = lvl;
         this.maxHitPoint = maxHitPoint;
@@ -190,7 +192,7 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
     public PokeType getType() {
         return type;
     }
-    public List<PokeMoves> getMoves() {
+    public List<AttackMove> getMoves() {
         return moves;
     }
 }
