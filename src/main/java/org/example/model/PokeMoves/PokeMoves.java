@@ -1,8 +1,7 @@
 package org.example.model.PokeMoves;
 
-import org.example.model.AbstractPokemon;
-import org.example.model.BattlePokemon;
-import org.example.model.PokeType;
+import org.example.model.Pokemons.AbstractPokemon;
+import org.example.model.Pokemons.PokeType;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;

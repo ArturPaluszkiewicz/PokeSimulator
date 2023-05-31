@@ -1,2 +1,6 @@
-package org.example.SwingView;public class BattleFrame {
+package org.example.SwingView;
+
+import javax.swing.*;
+
+public class BattleFrame extends JPanel {
 }

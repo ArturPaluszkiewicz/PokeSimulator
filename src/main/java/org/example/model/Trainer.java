@@ -1,5 +1,9 @@
 package org.example.model;
 
+import org.example.model.Locations.Location;
+import org.example.model.Pokemons.Entity.Ratatta;
+import org.example.model.Pokemons.Pokemon;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +16,7 @@ public class Trainer implements Serializable {
     public Trainer(){
         name = "Chempion";
         pokemons = new ArrayList<Pokemon>();
-        pokemons.add(new Pokemon("Pikachu"));
+        pokemons.add(new Ratatta());
         location = new Location();
     }
     public Trainer(String url) throws FileNotFoundException {
@@ -24,7 +28,7 @@ public class Trainer implements Serializable {
             location = trainer.getLocation();
             inputStream.close();
         } catch (Exception e) {
-  //          e.printStackTrace();
+            e.printStackTrace();
             throw new FileNotFoundException("asd");
         }
     }

@@ -1,6 +1,6 @@
-package org.example.model;
+package org.example.model.Pokemons;
 
-import org.example.model.PokeMoves.AttackMove;
+import org.example.model.PokeMoves.PokeMoves;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ public interface BattlePokemon {
     public void setAttack(int attack);
 
     //Getters
+    public String getName();
     public int getMaxHitPoint();
     public int getHitPoint();
     public int getDefence();
@@ -31,5 +32,5 @@ public interface BattlePokemon {
     public int getSlowAfterAttack();
     public Status getStatus();
     public PokeType getType();
-    public List<AttackMove> getMoves();
+    public List<PokeMoves> getMoves();
 }

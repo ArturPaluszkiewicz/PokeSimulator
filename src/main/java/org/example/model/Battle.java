@@ -1,22 +1,28 @@
 package org.example.model;
 
-import org.example.model.PokeMoves.AttackMove;
 import org.example.model.PokeMoves.PokeMoves;
+import org.example.model.Pokemons.*;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Map;
 
 public class Battle {
 
-    private AbstractPokemon trainersPokemon;
-    private AbstractPokemon wildPokemon;
+    private final Pokemon trainersPokemon;
+    private final WildPokemon wildPokemon;
     private String battleReport;
     private PokeWinner winnerPokemon;
     private PokeBattleToken pokeBattleToken;
-    private Pokemon pokeTr;
-    private WildPokemon pokeWild;
+    private final AbstractPokemon pokeTr;
+    private final AbstractPokemon pokeWild;
     private Map<Integer, PokeMoves> trainerPokeMoves;
 
-    public Battle(Pokemon trainersPokemon, AbstractPokemon wildPokemon){
+    public Battle(Pokemon trainersPokemon, WildPokemon wildPokemon){
         this.trainersPokemon = trainersPokemon;
         this.wildPokemon = wildPokemon;
         this.pokeTr = new Pokemon(trainersPokemon);
@@ -32,12 +38,11 @@ public class Battle {
             startBattle();
             duringBattle();
             endBattle();
-            return battleReport;
         }
-        else {
-            return battleReport;
-        }
+        saveReport();
+        return battleReport;
     }
+
     private void startBattle(){
             battleReport += ("Rozpoczela się walka pomiedzy twoim " + trainersPokemon.getName() + " a dzikim " + wildPokemon.getName() + " !\n");
     }
@@ -130,6 +135,34 @@ public class Battle {
             }
         }else {
             battleReport += ("Cos poszlo nie tak w klasie pokeAttack");
+        }
+    }
+    private void saveReport() {
+        LocalDateTime reportDateTime = LocalDateTime.now();
+        String reportFileName = new StringBuilder()
+                .append(reportDateTime.getYear())
+                .append("_")
+                .append(reportDateTime.getMonth())
+                .append("_")
+                .append(reportDateTime.getDayOfMonth())
+                .append("_")
+                .append(reportDateTime.getHour())
+                .append("_")
+                .append(reportDateTime.getMinute())
+                .append("_")
+                .append(reportDateTime.getSecond())
+                .append("_")
+                .append(pokeTr.getName())
+                .append("_VS_")
+                .append(pokeWild.getName()).toString();
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\BattleReports\\"+reportFileName));
+            outputStream.writeObject(battleReport);
+            outputStream.close();
+            System.out.println("Udało sie stworzyc zapisac raportu z walki");
+        } catch (Exception e) {
+            System.out.println("Nie udało sie stworzyc zapisac raportu z walki");
+            e.printStackTrace();
         }
     }
     private enum PokeWinner{

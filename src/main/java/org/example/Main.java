@@ -1,4 +1,5 @@
 package org.example;
+import org.example.SwingView.MainSwingView;
 import org.example.cmdView.CmdLocation;
 import org.example.cmdView.CmdView;
 import org.example.model.*;
@@ -8,11 +9,12 @@ public class Main {
 
 
        // new CmdView().start();
-
+        new MainSwingView();
 
 
         /*
         To do:
+        -Dodac szablon wykorzystywanych atakow w walce do obiektu pokemon - zmienic funkcje letsBattle w klasie battle zeby pobierala ten szablon.
         -zmienic wczytywanie gry zeby sprawdzalo czy istnieje plik do odczytu
         -zmienic zapis gry zeby sprawdzal przed zapisem czy istnieje juz plik do zapisu i jesli istnieje to zapytac czy na pewno chcemy go nadpisac
         -dodac mozliwosc wyboru pokemona ktorym chce sie rozpoczac walke

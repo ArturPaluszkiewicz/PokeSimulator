@@ -1,8 +1,12 @@
 package org.example.cmdView;
 
 import org.example.model.*;
+import org.example.model.Locations.Location;
 import org.example.model.PokeMoves.AttackMove;
 import org.example.model.PokeMoves.PokeMoves;
+import org.example.model.Pokemons.Pokemon;
+import org.example.model.Pokemons.Status;
+import org.example.model.Pokemons.WildPokemon;
 
 import java.util.*;
 
@@ -99,9 +103,9 @@ public class CmdLocation {
 
     public Map<Integer, PokeMoves> choseMovesToBattle(Pokemon pokemon){
         Map<Integer, PokeMoves> movesToUse = new HashMap<Integer, PokeMoves>();
-        ArrayList<AttackMove> tempPokeMoveList = new ArrayList<AttackMove>(pokemon.getMoves());
+        ArrayList<PokeMoves> tempPokeMoveList = new ArrayList<PokeMoves>(pokemon.getMoves());
         ArrayList<Integer> allowedRound = new ArrayList<>();
-        AttackMove tempPokeMoves = null;
+        PokeMoves tempPokeMoves = null;
         Boolean skipMoves;
         int temp = 0;
         for(int i=0;i<4;i++){
@@ -135,7 +139,7 @@ public class CmdLocation {
         }
         return movesToUse;
     }
-    public String showPokeMovesList(ArrayList<AttackMove> pokeMoves){
+    public String showPokeMovesList(ArrayList<PokeMoves> pokeMoves){
         String returnedString="(|0.Pomin|";
         for(int i=1;i<=pokeMoves.size();i++){
             returnedString+=i+"."+pokeMoves.get(i-1).getName()+"|";

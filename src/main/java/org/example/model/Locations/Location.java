@@ -1,4 +1,7 @@
-package org.example.model;
+package org.example.model.Locations;
+
+import org.example.model.Pokemons.Entity.WildPokes.WildCaterpie;
+import org.example.model.Pokemons.WildPokemon;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,10 +19,7 @@ public class Location implements Serializable {
         name = "Pallet";
         description = "Pallet - miasto startowe";
         pokemonsToBattle = new ArrayList<WildPokemon>();
-        WildPokemon poke1 = new WildPokemon();
-        WildPokemon poke2 = new WildPokemon();
-        pokemonsToBattle.add(poke1);
-        pokemonsToBattle.add(poke2);
+        pokemonsToBattle.add(new WildCaterpie(5));
         connectedLocation = new ArrayList<String>();
         //zmiast akcji zrobic liste flag lokacji(np-lokacja z sklepem bedzie miec flage sklep, lokacja z poke center flage pokecenter itd)
         action = new ArrayList<String>();

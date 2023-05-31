@@ -1,7 +1,8 @@
 package org.example.model.PokeMoves;
 
 
-import org.example.model.*;
+import org.example.model.Pokemons.AbstractPokemon;
+import org.example.model.Pokemons.PokeType;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -9,17 +10,12 @@ import java.io.Serializable;
 
 public class AttackMove extends PokeMoves implements Serializable {
 
-    private int basicDamage, scaleValue, finalDamage;
-    private ScaleFlag scaleFlag;
-    private AttackFlag attackFlag;
+    private int basicDamage, finalDamage;
 
     // Constructors
-    public AttackMove(String name, String description, int lvl, PokeType type, int basicDamage, int scaleValue, ScaleFlag scaleFlag, AttackFlag attackFlag) {
+    public AttackMove(String name, String description, int lvl, PokeType type, int basicDamage) {
         super(name,description,lvl,type);
         this.basicDamage = basicDamage;
-        this.scaleValue = scaleValue;
-        this.scaleFlag = scaleFlag;
-        this.attackFlag = attackFlag;
     } // Basic Constructor
     public AttackMove(String urlName){
         super(urlName);
@@ -38,7 +34,7 @@ public class AttackMove extends PokeMoves implements Serializable {
     @Override
     public String useMove(AbstractPokemon pokeToBuff, AbstractPokemon pokeToAttack) {
         int dmg=0;
-        if(attackFlag==AttackFlag.NORMAL){
+        if(true){
             int attack = getValue()+pokeToBuff.getAttack();
             dmg = pokeToAttack.takeHit(attack);
         }
@@ -46,7 +42,7 @@ public class AttackMove extends PokeMoves implements Serializable {
     }
     @Override
     protected void scale() {
-        finalDamage = basicDamage+(lvl*lvl*scaleValue);
+        finalDamage = basicDamage+(lvl*lvl);
     }
     @Override
     public int getValue() {

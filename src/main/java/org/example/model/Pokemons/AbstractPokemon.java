@@ -1,6 +1,7 @@
-package org.example.model;
+package org.example.model.Pokemons;
 
 import org.example.model.PokeMoves.AttackMove;
+import org.example.model.PokeMoves.PokeMoves;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -18,11 +19,11 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
     protected int maxHitPoint, hitPoint, defence, attack, specialAttack, specialDefense, initiative, numberOfAttack, slowAfterAttack;
     protected Status status;
     // moves and perks
-    protected List<AttackMove> moves;
+    protected List<PokeMoves> moves;
 
     //Constructors
     public AbstractPokemon() {
-        name = "Rattata";
+        name = "NoNamePokemon";
         lvl = 1;
         type = PokeType.Normal;
         maxHitPoint = 100;
@@ -35,11 +36,7 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
         numberOfAttack = 2;
         slowAfterAttack = 10;
         status = Status.Undefeated;
-        moves = new ArrayList<AttackMove>();
-        // moves.add(new PokeMoves("Scratch"));
-        moves.add(new AttackMove("Quick Attack"));
-        // moves.add(new PokeMoves("Bite"));
-        moves.add(new AttackMove("Super Fang"));
+        moves = new ArrayList<PokeMoves>();
     }
     public AbstractPokemon(AbstractPokemon pokemon){
         this.name = pokemon.name;
@@ -57,7 +54,7 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
         this.type = pokemon.type;
         this.moves = pokemon.getMoves();
     }
-    public AbstractPokemon(String name, int lvl, int maxHitPoint, int defence, int attack,int specialAttack,int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type,List<AttackMove> moves) {
+    public AbstractPokemon(String name, int lvl, int maxHitPoint, int defence, int attack,int specialAttack,int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type,List<PokeMoves> moves) {
         this.name = name;
         this.lvl = lvl;
         this.maxHitPoint = maxHitPoint;
@@ -192,7 +189,7 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
     public PokeType getType() {
         return type;
     }
-    public List<AttackMove> getMoves() {
+    public List<PokeMoves> getMoves() {
         return moves;
     }
 }
