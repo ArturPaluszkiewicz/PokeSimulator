@@ -20,6 +20,15 @@ public class Location implements Serializable {
         description = "Pallet - miasto startowe";
         pokemonsToBattle = new ArrayList<WildPokemon>();
         pokemonsToBattle.add(new WildCaterpie(5));
+        pokemonsToBattle.add(new WildCaterpie(5));
+        pokemonsToBattle.add(new WildCaterpie(5));
+        pokemonsToBattle.add(new WildCaterpie(5));
+        pokemonsToBattle.add(new WildCaterpie(5));
+        pokemonsToBattle.add(new WildCaterpie(5));
+        pokemonsToBattle.add(new WildCaterpie(5));
+        pokemonsToBattle.add(new WildCaterpie(5));
+        pokemonsToBattle.add(new WildCaterpie(5));
+        pokemonsToBattle.add(new WildCaterpie(5));
         connectedLocation = new ArrayList<String>();
         //zmiast akcji zrobic liste flag lokacji(np-lokacja z sklepem bedzie miec flage sklep, lokacja z poke center flage pokecenter itd)
         action = new ArrayList<String>();

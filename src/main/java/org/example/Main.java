@@ -1,16 +1,10 @@
 package org.example;
 import org.example.SwingView.MainSwingView;
-import org.example.cmdView.CmdLocation;
-import org.example.cmdView.CmdView;
-import org.example.model.*;
 
 public class Main {
     public static void main(String[] args) {
 
-
-       // new CmdView().start();
-        new MainSwingView();
-
+        MainSwingView.getInstance();
 
         /*
         To do:

@@ -1,48 +1,78 @@
 package org.example.SwingView;
 
-import org.example.model.Battle;
-import org.example.model.PokeMoves.PokeMoves;
+
 import org.example.model.Trainer;
 
 import javax.swing.*;
-import java.util.HashMap;
+import java.awt.*;
 import java.util.Optional;
 
 public class MainSwingView extends JFrame {
-    public static Optional<Trainer> player = Optional.empty();
-    BattleReportFrame battleReportFrame;
 
-    public MainSwingView(){
+    private static MainSwingView Instance;
+    public static Optional<Trainer> player = Optional.empty();
+    private final JPanel centerPanel;
+    private MainMenuFrame mainMenuFrame;
+
+    private MainSwingView(){
         super("Poke Simulator");
         setSize(500,500);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+        centerPanel = new JPanel();
+        centerPanel.setLayout(null);
+        centerPanel.setBounds(120,0,500,500);
         start();
     }
+    public static MainSwingView getInstance(){
+        if (Instance == null){
+            Instance = new MainSwingView();
+        }
+        return Instance;
+    }
 
-    public void start(){
+    private void start(){
         preStart();
-        battleReportFrame = new BattleReportFrame();
-        add(battleReportFrame);
+        setLayout(null);
+        setSize(620,500);
+
+        mainMenuFrame = new MainMenuFrame();
+
+        add(mainMenuFrame);
+        add(centerPanel);
+
         repaint();
     }
 
-    public void preStart(){
+    private void preStart(){
         //Function to open before start panel where Player load saved trainer from file or create new one.
-         MainMenuFrame mainMenuFrame = new MainMenuFrame();
-         add(mainMenuFrame);
+         StartGameMenu startGameMenu = new StartGameMenu();
+         add(startGameMenu);
          setVisible(true);
          while(true){
              repaint();
              if(player.isPresent()){
-                 System.out.println("gracz w koncu zostal wybrany jpr");
                  break;
              }
          }
-         System.out.println("wyszlismy z petli");
-         remove(mainMenuFrame);
+         remove(startGameMenu);
          repaint();
     }
+    private void removeUnusedPanels(){
+       centerPanel.removeAll();
+       repaint();
+    }
+    public void showBattleReportFrame(){
+        removeUnusedPanels();
+        centerPanel.add("reportsFrame",new BattleReportFrame());
+        //repaint();
+    }
+    public void showLocationFrame(){
+        removeUnusedPanels();
+        centerPanel.add("locationFrame", new LocationFrame(player.get().getLocation()));
+        //repaint();
+    }
+
 }

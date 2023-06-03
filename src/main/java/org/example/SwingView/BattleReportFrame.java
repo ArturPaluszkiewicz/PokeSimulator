@@ -2,17 +2,15 @@ package org.example.SwingView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-public class BattleReportFrame extends JPanel implements ActionListener {
+public class BattleReportFrame extends JPanel{
 
     private final String filePath = "C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\BattleReports";
     private JTextArea reportText;
     private JLabel emptyLabel;
-    private JComboBox comboBox;
+    private JComboBox<String> comboBox;
     private JScrollPane scrollPane;
 
     public BattleReportFrame(){
@@ -24,9 +22,12 @@ public class BattleReportFrame extends JPanel implements ActionListener {
         reportText.setLineWrap(true);
         reportText.setFont(new Font("Arial",Font.PLAIN,12));
         reportText.setEditable(false);
+        reportText.setBounds(0,0,400,400);
+        reportText.setPreferredSize(new Dimension(400,400));
 
         scrollPane = new JScrollPane(reportText);
         scrollPane.setBounds(40,40,400,400);
+        scrollPane.setPreferredSize(new Dimension(400,400));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         addReportsButtons();
@@ -41,26 +42,21 @@ public class BattleReportFrame extends JPanel implements ActionListener {
                 emptyLabel.setBounds(110, 10, 300, 20);
                 add(emptyLabel);
             } else {
-                System.out.println("Jest git");
-                comboBox = new JComboBox<>(reportsList);
+                comboBox = new JComboBox<String>(reportsList);
                 comboBox.setBounds(80,10,320,20);
-                comboBox.addActionListener(this);
+                comboBox.addActionListener(e -> {
+                    System.out.println("asd");
+                    try {
+                        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath+"\\"+comboBox.getSelectedItem().toString()));
+                        String report = inputStream.readObject().toString();
+                        inputStream.close();
+                        reportText.setText(report);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
                 comboBox.setFocusable(false);
                 add(comboBox);
             }
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==comboBox){
-            reportText.setText(comboBox.getSelectedItem().toString());
-            try {
-                ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath+"\\"+comboBox.getSelectedItem().toString().toString()));
-                String report = inputStream.readObject().toString();
-                inputStream.close();
-                reportText.setText(report);
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
-        }
     }
 }

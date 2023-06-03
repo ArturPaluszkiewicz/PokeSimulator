@@ -1,48 +1,39 @@
 package org.example.SwingView;
 
-import org.example.model.Trainer;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.util.Optional;
 
 public class MainMenuFrame extends JPanel implements ActionListener {
-        JButton newGame;
-        JButton loadGame;
+
+    private JButton battleReportsButton,locationButton;
     public MainMenuFrame(){
-        newGame = new JButton("New Game");
-        newGame.setBounds(150,150,200,50);
-        newGame.addActionListener(this);
-        newGame.setFocusable(false);
-
-
-        loadGame = new JButton("Load Game");
-        loadGame.setBounds(150, 210,200,50);
-        loadGame.addActionListener(this);
-        loadGame.setFocusable(false);
-
-        add(newGame);
-        add(loadGame);
         setLayout(null);
+        setBounds(0,0,120,500);
+
+        locationButton = new JButton("Lokacja");
+        locationButton.setBounds(5,5,110,50);
+        locationButton.setFocusable(false);
+        locationButton.addActionListener(this);
+
+        battleReportsButton = new JButton("Raporty");
+        battleReportsButton.setBounds(5,60,110,50);
+        battleReportsButton.setFocusable(false);
+        battleReportsButton.addActionListener(this);
+
+        add(battleReportsButton);
+        add(locationButton);
+
         setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==newGame){
-            MainSwingView.player = Optional.of(new Trainer());
-            System.out.println("nowy trener wkracza do akcji");
+        if(e.getSource()==locationButton){
+            MainSwingView.getInstance().showLocationFrame();
         }
-        if(e.getSource()==loadGame){
-            try {
-                MainSwingView.player = Optional.of(new Trainer("C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\Trainer"));
-                System.out.println("stary trener zmartwychwstal ponownie");
-            } catch (FileNotFoundException ex) {
-                MainSwingView.player = Optional.empty();
-                System.out.println("cos poszlo nie tak "+ e);
-            }
+        if(e.getSource()==battleReportsButton){
+            MainSwingView.getInstance().showBattleReportFrame();
         }
     }
 }
