@@ -7,16 +7,25 @@ import org.example.model.Pokemons.Pokemon;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Trainer implements Serializable {
     private String name;
-    private List<Pokemon> pokemons;
+    private List<Optional<Pokemon>> pokemons;
+    private List<Pokemon> pokemonsInBox;
     private Location location;
 
     public Trainer(){
         name = "Chempion";
-        pokemons = new ArrayList<Pokemon>();
-        pokemons.add(new Ratatta());
+        pokemons = new ArrayList<Optional<Pokemon>>();
+        pokemonsInBox = new ArrayList<Pokemon>();
+        pokemons.add(Optional.of(new Ratatta()));
+        pokemons.add(Optional.of(new Ratatta()));
+        pokemons.add(Optional.of(new Ratatta()));
+        pokemons.add(Optional.of(new Ratatta()));
+        pokemons.add(Optional.empty());
+        pokemons.add(Optional.empty());
+
         location = new Location();
     }
     public Trainer(String url) throws FileNotFoundException {
@@ -41,11 +50,11 @@ public class Trainer implements Serializable {
         this.name = name;
     }
 
-    public List<Pokemon> getPokemons() {
+    public List<Optional<Pokemon>> getPokemons() {
         return pokemons;
     }
 
-    public void setPokemons(List<Pokemon> pokemons) {
+    public void setPokemons(List<Optional<Pokemon>> pokemons) {
         this.pokemons = pokemons;
     }
 
@@ -67,6 +76,39 @@ public class Trainer implements Serializable {
                 Exception e)
         {
             e.printStackTrace();
+        }
+    }
+
+    public String[] getPokemonsName(){
+        int temp1=0;
+        for(int i=0;i<6;i++){
+            if(pokemons.get(i).isPresent()){
+                temp1++;
+            }
+        }
+        String[] temp2 = new String[temp1];
+        for(int i = 0; i<pokemons.size();i++){
+            if(pokemons.get(i).isPresent()) {
+                temp2[i] = (i + 1) + "." + pokemons.get(i).get().getName();
+            }
+        }
+        return temp2;
+    }
+    public void catchPokemon(Pokemon pokemon){
+        boolean isFreeSlot = false;
+        int witchSlotIsFree = 0;
+        for(int i=0;i<6;i++){
+            if(pokemons.get(i).isEmpty()){
+                isFreeSlot = true;
+                witchSlotIsFree = i;
+                break;
+            }
+        }
+        if(isFreeSlot){
+            pokemons.add(witchSlotIsFree,Optional.of(pokemon));
+        }
+        else {
+            pokemonsInBox.add(pokemon);
         }
     }
 }

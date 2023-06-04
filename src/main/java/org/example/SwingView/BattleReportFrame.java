@@ -22,8 +22,8 @@ public class BattleReportFrame extends JPanel{
         reportText.setLineWrap(true);
         reportText.setFont(new Font("Arial",Font.PLAIN,12));
         reportText.setEditable(false);
-        reportText.setBounds(0,0,400,400);
-        reportText.setPreferredSize(new Dimension(400,400));
+        reportText.setBounds(0,0,400,1000);
+        reportText.setPreferredSize(new Dimension(400,1000));
 
         scrollPane = new JScrollPane(reportText);
         scrollPane.setBounds(40,40,400,400);
@@ -32,6 +32,7 @@ public class BattleReportFrame extends JPanel{
 
         addReportsButtons();
         add(scrollPane);
+        repaint();
 
         setVisible(true);
     }
@@ -45,13 +46,14 @@ public class BattleReportFrame extends JPanel{
                 comboBox = new JComboBox<String>(reportsList);
                 comboBox.setBounds(80,10,320,20);
                 comboBox.addActionListener(e -> {
-                    System.out.println("asd");
                     try {
                         ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath+"\\"+comboBox.getSelectedItem().toString()));
                         String report = inputStream.readObject().toString();
                         inputStream.close();
+                        System.out.println(report);
                         reportText.setText(report);
                     } catch (Exception ex) {
+                        System.out.println("asd cos nie tak");
                         throw new RuntimeException(ex);
                     }
                 });

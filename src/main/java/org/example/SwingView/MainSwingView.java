@@ -12,6 +12,7 @@ public class MainSwingView extends JFrame {
     private static MainSwingView Instance;
     public static Optional<Trainer> player = Optional.empty();
     private final JPanel centerPanel;
+    private LocationFrame locationFrame;
     private MainMenuFrame mainMenuFrame;
 
     private MainSwingView(){
@@ -21,9 +22,11 @@ public class MainSwingView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+
         centerPanel = new JPanel();
         centerPanel.setLayout(null);
         centerPanel.setBounds(120,0,500,500);
+
         start();
     }
     public static MainSwingView getInstance(){
@@ -38,6 +41,7 @@ public class MainSwingView extends JFrame {
         setLayout(null);
         setSize(620,500);
 
+        locationFrame = new LocationFrame(player.get().getLocation());
         mainMenuFrame = new MainMenuFrame();
 
         add(mainMenuFrame);
@@ -66,13 +70,15 @@ public class MainSwingView extends JFrame {
     }
     public void showBattleReportFrame(){
         removeUnusedPanels();
-        centerPanel.add("reportsFrame",new BattleReportFrame());
-        //repaint();
+        centerPanel.add(new BattleReportFrame());
     }
     public void showLocationFrame(){
         removeUnusedPanels();
-        centerPanel.add("locationFrame", new LocationFrame(player.get().getLocation()));
-        //repaint();
+        centerPanel.add(locationFrame);
     }
 
+    public void showTrainersFrame() {
+        removeUnusedPanels();
+        centerPanel.add(new TrainersFrame(player.get()));
+    }
 }

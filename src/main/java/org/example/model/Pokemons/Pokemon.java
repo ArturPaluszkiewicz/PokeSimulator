@@ -8,17 +8,21 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Pokemon extends AbstractPokemon implements Serializable {
 
     //Pokemons Perks
     protected List<PokePerks> perks;
+    protected Map<Integer, PokeMoves> battleTemplate;
 
     //Constructors
     public Pokemon(){
         super();
         perks = new ArrayList<PokePerks>();
+        battleTemplate = new HashMap<Integer,PokeMoves>();
     }
     public Pokemon(String nameUrl){
         try {
@@ -56,5 +60,13 @@ public class Pokemon extends AbstractPokemon implements Serializable {
     //Getters
     public List<PokePerks> getPerks() {
         return perks;
+    }
+
+    public Map<Integer, PokeMoves> getBattleTemplate() {
+        return battleTemplate;
+    }
+
+    public void setBattleTemplate(Map<Integer, PokeMoves> battleTemplate) {
+        this.battleTemplate = battleTemplate;
     }
 }

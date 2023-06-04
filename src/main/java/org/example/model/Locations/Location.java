@@ -9,8 +9,7 @@ import java.util.List;
 
 public class Location implements Serializable {
 
-    private String name;
-    private String description;
+    private String name, description;
     private List<WildPokemon> pokemonsToBattle;
     private List<String> connectedLocation;
     private List<String> action;
@@ -19,11 +18,6 @@ public class Location implements Serializable {
         name = "Pallet";
         description = "Pallet - miasto startowe";
         pokemonsToBattle = new ArrayList<WildPokemon>();
-        pokemonsToBattle.add(new WildCaterpie(5));
-        pokemonsToBattle.add(new WildCaterpie(5));
-        pokemonsToBattle.add(new WildCaterpie(5));
-        pokemonsToBattle.add(new WildCaterpie(5));
-        pokemonsToBattle.add(new WildCaterpie(5));
         pokemonsToBattle.add(new WildCaterpie(5));
         pokemonsToBattle.add(new WildCaterpie(5));
         pokemonsToBattle.add(new WildCaterpie(5));

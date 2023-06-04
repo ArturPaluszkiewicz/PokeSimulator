@@ -1,7 +1,7 @@
 package org.example.SwingView;
 
+import org.example.model.Battle;
 import org.example.model.Pokemons.WildPokemon;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,6 +18,21 @@ public class BattleFrame extends JButton{
         setText(number + ". "+pokemon.getName());
         addActionListener(e -> {
             setBackground(Color.GREEN);
+            int chosenPokemon = JOptionPane.showOptionDialog(
+                    null,
+                    "Ktorym pokemonem chcesz walczyc ?",
+                    "Walka",
+                    0,
+                    0,
+                    null,
+                    MainSwingView.player.get().getPokemonsName(),
+                    1);
+            if (chosenPokemon<6&&chosenPokemon>=0){
+                new Battle(MainSwingView.player.get().getPokemons().get(chosenPokemon).get(),pokemon).letsBattle();
+            }
+            if(pokemon.checkIfDefeated()){
+                setBackground(Color.GRAY);
+            }
         });
     }
 

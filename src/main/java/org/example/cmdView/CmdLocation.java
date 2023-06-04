@@ -85,9 +85,9 @@ public class CmdLocation {
         }
     }
     public void pokeBattle(WildPokemon wildPoke){
-        Battle battle = new Battle(trainer.getPokemons().get(0),wildPoke);
+        Battle battle = new Battle(trainer.getPokemons().get(0).get(),wildPoke);
         System.out.println("************************************************************************************************************************");
-        System.out.println(battle.letsBattle(choseMovesToBattle(trainer.getPokemons().get(0))));
+        System.out.println(battle.letsBattle());
         System.out.println("************************************************************************************************************************");
     }
     public void goToOtherLocation(){

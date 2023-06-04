@@ -32,8 +32,8 @@ public class Battle {
         this.battleReport = "";
     }
 
-    public String letsBattle(Map<Integer, PokeMoves> trainerPokeMoves){
-        this.trainerPokeMoves=trainerPokeMoves;
+    public String letsBattle(){
+        this.trainerPokeMoves=trainersPokemon.getBattleTemplate();
         if(checkIfCanBattle()) {
             startBattle();
             duringBattle();
