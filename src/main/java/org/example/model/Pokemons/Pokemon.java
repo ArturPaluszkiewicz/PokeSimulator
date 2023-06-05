@@ -15,12 +15,15 @@ import java.util.Map;
 public class Pokemon extends AbstractPokemon implements Serializable {
 
     //Pokemons Perks
+
+    protected long experience;
     protected List<PokePerks> perks;
     protected Map<Integer, PokeMoves> battleTemplate;
 
     //Constructors
     public Pokemon(){
         super();
+        experience = 0;
         perks = new ArrayList<PokePerks>();
         battleTemplate = new HashMap<Integer,PokeMoves>();
     }
@@ -68,5 +71,13 @@ public class Pokemon extends AbstractPokemon implements Serializable {
 
     public void setBattleTemplate(Map<Integer, PokeMoves> battleTemplate) {
         this.battleTemplate = battleTemplate;
+    }
+    public long getExperience(){
+        return experience;
+    }
+    public void addExperience(long exp){
+        if(exp>0) {
+            experience += exp;
+        }
     }
 }

@@ -1,6 +1,7 @@
 package org.example.SwingView;
 
 
+import org.example.model.Pokemons.Pokemon;
 import org.example.model.Trainer;
 
 import javax.swing.*;
@@ -76,9 +77,12 @@ public class MainSwingView extends JFrame {
         removeUnusedPanels();
         centerPanel.add(locationFrame);
     }
-
     public void showTrainersFrame() {
         removeUnusedPanels();
         centerPanel.add(new TrainersFrame(player.get()));
+    }
+    public void showPokemonFrame(Pokemon pokemon){
+        removeUnusedPanels();
+        centerPanel.add(new PokemonFrame(pokemon));
     }
 }

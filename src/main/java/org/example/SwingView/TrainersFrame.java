@@ -22,22 +22,22 @@ public class TrainersFrame extends JPanel {
     }
     private void addPokemonsPanels(){
         PokemonPanel pokemonPanel1 = new PokemonPanel(trainer.getPokemons().get(0));
-        pokemonPanel1.setBounds(30*1+110*0,30*1+40*0,110,40);
+        pokemonPanel1.setBounds(20*1+120*0,20*1+100*0,120,100);
         add(pokemonPanel1);
         PokemonPanel pokemonPanel2 = new PokemonPanel(trainer.getPokemons().get(1));
-        pokemonPanel2.setBounds(30*2+110*1,30*1+40*0,110,40);
+        pokemonPanel2.setBounds(20*2+120*1,20*1+100*0,120,100);
         add(pokemonPanel2);
         PokemonPanel pokemonPanel3 = new PokemonPanel(trainer.getPokemons().get(2));
-        pokemonPanel3.setBounds(30*3+110*2,30*1+40*0,110,40);
+        pokemonPanel3.setBounds(20*3+120*2,20*1+100*0,120,100);
         add(pokemonPanel3);
         PokemonPanel pokemonPanel4 = new PokemonPanel(trainer.getPokemons().get(3));
-        pokemonPanel4.setBounds(30*1+110*0,30*2+40*1,110,40);
+        pokemonPanel4.setBounds(20*1+120*0,20*2+100*1,120,100);
         add(pokemonPanel4);
         PokemonPanel pokemonPanel5 = new PokemonPanel(trainer.getPokemons().get(4));
-        pokemonPanel5.setBounds(30*2+110*1,30*2+40*1,110,40);
+        pokemonPanel5.setBounds(20*2+120*1,20*2+100*1,120,100);
         add(pokemonPanel5);
         PokemonPanel pokemonPanel6 = new PokemonPanel(trainer.getPokemons().get(5));
-        pokemonPanel6.setBounds(30*3+110*2,30*2+40*1,110,40);
+        pokemonPanel6.setBounds(20*3+120*2,20*2+100*1,120,100);
         add(pokemonPanel6);
     }
 }
