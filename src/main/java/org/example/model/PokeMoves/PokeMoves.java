@@ -11,6 +11,9 @@ public abstract class PokeMoves {
     protected String name, description;
     protected PokeType type;
     protected int lvl;
+    protected int basicDamage = 25;
+    protected int addingDmg = 0;
+    protected int finalDamage = 0;
 
     public PokeMoves(String name, String description, int lvl, PokeType type) {
         this.name=name;
@@ -46,7 +49,11 @@ public abstract class PokeMoves {
             this.lvl=1;
         }
     }
+    public PokeType getType(){return type;}
     public abstract int getValue();
     public abstract String useMove(AbstractPokemon pokeToBuff, AbstractPokemon pokeToAttack);
     protected abstract void scale();
+    public int getLvl() {
+        return lvl;
+    }
 }

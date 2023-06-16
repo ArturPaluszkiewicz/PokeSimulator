@@ -1,6 +1,7 @@
 package org.example.model.Pokemons;
 
 import org.example.model.PokeMoves.AttackMove;
+import org.example.model.PokeMoves.MovesTemplate;
 import org.example.model.PokeMoves.PokeMoves;
 import org.example.model.PokePerks.PokePerks;
 
@@ -8,24 +9,22 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Pokemon extends AbstractPokemon implements Serializable {
-
-    //Pokemons Perks
-
     protected long experience;
     protected List<PokePerks> perks;
-    protected Map<Integer, PokeMoves> battleTemplate;
+    protected MovesTemplate chosenTemplate;
+    protected List<MovesTemplate> templates;
+    protected int perksPoints;
 
     //Constructors
     public Pokemon(){
         super();
         experience = 0;
         perks = new ArrayList<PokePerks>();
-        battleTemplate = new HashMap<Integer,PokeMoves>();
+        perksPoints = 0;
+        chosenTemplate = new MovesTemplate("default");
     }
     public Pokemon(String nameUrl){
         try {
@@ -64,13 +63,17 @@ public class Pokemon extends AbstractPokemon implements Serializable {
     public List<PokePerks> getPerks() {
         return perks;
     }
-
-    public Map<Integer, PokeMoves> getBattleTemplate() {
-        return battleTemplate;
+    public MovesTemplate getChosenTemplate(){
+        return chosenTemplate;
     }
-
-    public void setBattleTemplate(Map<Integer, PokeMoves> battleTemplate) {
-        this.battleTemplate = battleTemplate;
+    public void setChosenTemplate(MovesTemplate template){
+        chosenTemplate = template;
+    }
+    public void addTemplates(MovesTemplate movesTemplate){
+        templates.add(movesTemplate);
+    }
+    public List<MovesTemplate> getTemplates(){
+        return templates;
     }
     public long getExperience(){
         return experience;
@@ -79,5 +82,14 @@ public class Pokemon extends AbstractPokemon implements Serializable {
         if(exp>0) {
             experience += exp;
         }
+    }
+    public int getPerksPoints(){
+        return perksPoints;
+    }
+    public void addPerksPoint(int value){
+        perksPoints=perksPoints+value;
+    }
+    public void subPerksPoint(int value){
+        perksPoints=perksPoints-value;
     }
 }

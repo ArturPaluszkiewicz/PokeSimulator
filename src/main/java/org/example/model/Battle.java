@@ -1,5 +1,6 @@
 package org.example.model;
 
+import org.example.model.PokeMoves.MovesTemplate;
 import org.example.model.PokeMoves.PokeMoves;
 import org.example.model.Pokemons.*;
 
@@ -20,7 +21,7 @@ public class Battle {
     private PokeBattleToken pokeBattleToken;
     private final AbstractPokemon pokeTr;
     private final AbstractPokemon pokeWild;
-    private Map<Integer, PokeMoves> trainerPokeMoves;
+    private MovesTemplate trainerPokeMoves;
 
     public Battle(Pokemon trainersPokemon, WildPokemon wildPokemon){
         this.trainersPokemon = trainersPokemon;
@@ -33,7 +34,7 @@ public class Battle {
     }
 
     public String letsBattle(){
-        this.trainerPokeMoves=trainersPokemon.getBattleTemplate();
+        this.trainerPokeMoves=trainersPokemon.getChosenTemplate();
         if(checkIfCanBattle()) {
             startBattle();
             duringBattle();
@@ -68,7 +69,7 @@ public class Battle {
 
     private void useMoves(int numberOfRound) {
         if(trainerPokeMoves.containsKey(numberOfRound)){
-            battleReport+=trainerPokeMoves.get(numberOfRound).useMove(pokeTr,pokeWild);
+            battleReport+=trainerPokeMoves.getMove(numberOfRound).useMove(pokeTr,pokeWild);
         }
     }
     private void battleTokenAssign(){

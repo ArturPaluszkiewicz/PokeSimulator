@@ -13,7 +13,7 @@ public class QuickAttack extends PokeMoves implements Serializable {
     private int basicDamage = 10;
     private int finalDamage = 0;
     public QuickAttack(int lvl) {
-        super("Quick Attack", "Very quick attack", lvl, PokeType.Normal);
+        super("Quick Attack", "Bardzo szybki atak", lvl, PokeType.Normal);
         scale();
     }
 
@@ -31,6 +31,6 @@ public class QuickAttack extends PokeMoves implements Serializable {
 
     @Override
     protected void scale() {
-
+        finalDamage = addingDmg + basicDamage;
     }
 }

@@ -1,11 +1,11 @@
 package org.example.SwingView;
 
 
+import org.example.SwingView.PokemonDetails.PokemonFrame;
 import org.example.model.Pokemons.Pokemon;
 import org.example.model.Trainer;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Optional;
 
 public class MainSwingView extends JFrame {

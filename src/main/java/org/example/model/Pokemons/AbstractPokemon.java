@@ -155,6 +155,44 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
         }
     }
 
+    //buffAndDebuffFunction
+    public void increaseAttack(int buff){
+        attack=attack+buff;
+    }
+    public void increaseSpecialAttack(int buff){
+        specialAttack=specialAttack+buff;
+    }
+    public void increaseDefense(int buff){
+        defence=defence+buff;
+    }
+    public void increaseSpecialDefense(int buff){
+        specialDefense=specialDefense+buff;
+    }
+    public void increaseNumberOfAttack(int buff){
+        numberOfAttack=numberOfAttack+buff;
+    }
+    public void increaseMaxHp(int buff) {
+        maxHitPoint=maxHitPoint+buff;
+    }
+    public void decreaseAttack(int debuff){
+        attack=attack-debuff;
+    }
+    public void decreaseSpecialAttack(int debuff){
+        specialAttack=specialAttack-debuff;
+    }
+    public void decreaseDefense(int debuff){
+        defence=defence-debuff;
+    }
+    public void decreaseSpecialDefense(int debuff){
+        specialDefense=specialDefense-debuff;
+    }
+    public void decreaseNumberOfAttack(int debuff){
+        numberOfAttack=numberOfAttack-debuff;
+    }
+    public void decreaseMaxHp(int debuff){
+        maxHitPoint=maxHitPoint-debuff;
+    }
+
     // Getters
     public int getMaxHitPoint() {
         return maxHitPoint;

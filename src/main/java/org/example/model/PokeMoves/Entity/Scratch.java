@@ -7,10 +7,9 @@ import org.example.model.Pokemons.PokeType;
 import java.io.Serializable;
 
 public class Scratch extends PokeMoves implements Serializable {
-    private int basicDamage = 25;
-    private int finalDamage = 0;
+
     public Scratch(int lvl) {
-        super("Quick Attack", "Very quick attack", lvl, PokeType.Normal);
+        super("Scratch", "Atak za pomoca pazurow", lvl, PokeType.Normal);
         scale();
     }
 
@@ -25,9 +24,8 @@ public class Scratch extends PokeMoves implements Serializable {
         int dmg = pokeToAttack.takeHit(attack);
         return ("Pokemon "+ pokeToBuff.getName() +" uzył Scratch i zadał "+ pokeToAttack.getName() +" "+ dmg +" obrazen");
     }
-
     @Override
     protected void scale() {
-
+        finalDamage = addingDmg + basicDamage;
     }
 }
