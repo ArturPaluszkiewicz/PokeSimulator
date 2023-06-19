@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.Battle;
 
 import org.example.model.PokeMoves.MovesTemplate;
 import org.example.model.PokeMoves.PokeMoves;
@@ -69,7 +69,7 @@ public class Battle {
 
     private void useMoves(int numberOfRound) {
         if(trainerPokeMoves.containsKey(numberOfRound)){
-            battleReport+=trainerPokeMoves.getMove(numberOfRound).useMove(pokeTr,pokeWild);
+            battleReport+=trainerPokeMoves.getMove(numberOfRound).get().useMove(pokeWild);
         }
     }
     private void battleTokenAssign(){

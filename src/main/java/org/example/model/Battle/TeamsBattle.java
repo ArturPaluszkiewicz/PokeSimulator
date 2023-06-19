@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.Battle;
 
 import org.example.model.Pokemons.AbstractPokemon;
 import org.example.model.Pokemons.Pokemon;

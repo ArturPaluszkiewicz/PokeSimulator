@@ -1,8 +1,8 @@
 package org.example.cmdView;
 
 import org.example.model.*;
+import org.example.model.Battle.Battle;
 import org.example.model.Locations.Location;
-import org.example.model.PokeMoves.AttackMove;
 import org.example.model.PokeMoves.PokeMoves;
 import org.example.model.Pokemons.Pokemon;
 import org.example.model.Pokemons.Status;

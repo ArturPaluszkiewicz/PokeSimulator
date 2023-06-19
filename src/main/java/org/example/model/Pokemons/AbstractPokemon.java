@@ -1,13 +1,15 @@
 package org.example.model.Pokemons;
 
-import org.example.model.PokeMoves.AttackMove;
+import org.example.model.PokeMoves.MovesTemplate;
 import org.example.model.PokeMoves.PokeMoves;
+import org.example.model.Trainer;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class AbstractPokemon implements BattlePokemon, Serializable {
 
@@ -20,6 +22,8 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
     protected Status status;
     // moves and perks
     protected List<PokeMoves> moves;
+    protected Optional<Trainer> owner;
+    protected MovesTemplate battleTemplate;
 
     //Constructors
     public AbstractPokemon() {
@@ -37,6 +41,7 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
         slowAfterAttack = 10;
         status = Status.Undefeated;
         moves = new ArrayList<PokeMoves>();
+        battleTemplate = new MovesTemplate("default");
     }
     public AbstractPokemon(AbstractPokemon pokemon){
         this.name = pokemon.name;
@@ -53,6 +58,7 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
         this.status = pokemon.status;
         this.type = pokemon.type;
         this.moves = pokemon.getMoves();
+        this.battleTemplate = pokemon.battleTemplate;
     }
     public AbstractPokemon(String name, int lvl, int maxHitPoint, int defence, int attack,int specialAttack,int specialDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type,List<PokeMoves> moves) {
         this.name = name;
@@ -69,6 +75,7 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
         this.status = Status.Undefeated;
         this.type = type;
         this.moves = moves;
+        battleTemplate = new MovesTemplate("default");
     }
     public AbstractPokemon(String urlName){
         try {
@@ -109,7 +116,12 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
         return false;
     }
     public int takeHit(int damage){
-        damage -= defence;
+        if(defence<damage) {
+            damage = damage - defence;
+        }
+        else {
+            damage = 1;
+        }
         setHitPoint(hitPoint-damage);
         return damage;
     }
@@ -121,38 +133,6 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
     public void slowAfterAttack(){
         setInitiative(initiative-slowAfterAttack);
         setNumberOfAttack(numberOfAttack-1);
-    }
-    public void setInitiative(int initiative) {
-        this.initiative = initiative;
-        if(this.initiative<=0){
-            this.initiative=0;
-        }
-    }
-    public void setNumberOfAttack(int numberOfAttack) {
-        this.numberOfAttack = numberOfAttack;
-        if(this.numberOfAttack<0){
-            this.numberOfAttack=0;
-        }
-    }
-    public void setHitPoint(int hitPoint) {
-        if (hitPoint<0){
-            this.hitPoint = 0;
-        }else {
-            this.hitPoint = hitPoint;
-        }
-        checkIfDefeated();
-    }
-    public void setDefence(int defence) {
-        this.defence = defence;
-        if(this.defence<=0){
-            this.defence=0;
-        }
-    }
-    public void setAttack(int attack) {
-        this.attack = attack;
-        if(this.attack<=0){
-            this.attack=1;
-        }
     }
 
     //buffAndDebuffFunction
@@ -193,6 +173,46 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
         maxHitPoint=maxHitPoint-debuff;
     }
 
+    //Setters
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+        if(this.initiative<=0){
+            this.initiative=0;
+        }
+    }
+    public void setNumberOfAttack(int numberOfAttack) {
+        this.numberOfAttack = numberOfAttack;
+        if(this.numberOfAttack<0){
+            this.numberOfAttack=0;
+        }
+    }
+    public void setHitPoint(int hitPoint) {
+        if (hitPoint<0){
+            this.hitPoint = 0;
+        }else {
+            this.hitPoint = hitPoint;
+        }
+        checkIfDefeated();
+    }
+    public void setDefence(int defence) {
+        this.defence = defence;
+        if(this.defence<=0){
+            this.defence=0;
+        }
+    }
+    public void setAttack(int attack) {
+        this.attack = attack;
+        if(this.attack<=0){
+            this.attack=1;
+        }
+    }
+    public void setOwner(Trainer newOwner){
+        this.owner = Optional.ofNullable(newOwner);
+    }
+    public void setChosenTemplate(MovesTemplate template){
+        battleTemplate = template;
+    }
+
     // Getters
     public int getMaxHitPoint() {
         return maxHitPoint;
@@ -229,5 +249,9 @@ public abstract class AbstractPokemon implements BattlePokemon, Serializable {
     }
     public List<PokeMoves> getMoves() {
         return moves;
+    }
+    public Optional<Trainer> getOwner() {return owner;}
+    public MovesTemplate getChosenTemplate(){
+        return battleTemplate;
     }
 }

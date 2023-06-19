@@ -1,20 +1,23 @@
 package org.example.model.Pokemons;
 
-import org.example.model.PokeMoves.AttackMove;
-import org.example.model.PokeMoves.PokeMoves;
+import org.example.model.LootSystem;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class WildPokemon extends AbstractPokemon implements Serializable {
 
+    protected LootSystem loot;
+
     public WildPokemon() {
         super();
+        loot = new LootSystem(10);
     }
     public WildPokemon(AbstractPokemon pokemon){
         super(pokemon);
+        loot = new LootSystem(10);
     }
-    public WildPokemon(String name, int lvl, int maxHitPoint, int defence, int attack, int specjalAttack, int specjalDefense, int initiative, int numberOfAttack, int slowAfterAttack, PokeType type, List<PokeMoves> moves) {
-        super(name, lvl, maxHitPoint, defence, attack, specjalAttack, specjalDefense, initiative, numberOfAttack, slowAfterAttack, type,moves);
-    }
+
+    //getters
+    public LootSystem getLoot(){return loot;}
+
 }

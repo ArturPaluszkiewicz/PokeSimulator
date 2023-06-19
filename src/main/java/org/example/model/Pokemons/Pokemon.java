@@ -1,6 +1,4 @@
 package org.example.model.Pokemons;
-
-import org.example.model.PokeMoves.AttackMove;
 import org.example.model.PokeMoves.MovesTemplate;
 import org.example.model.PokeMoves.PokeMoves;
 import org.example.model.PokePerks.PokePerks;
@@ -14,8 +12,7 @@ import java.util.List;
 public class Pokemon extends AbstractPokemon implements Serializable {
     protected long experience;
     protected List<PokePerks> perks;
-    protected MovesTemplate chosenTemplate;
-    protected List<MovesTemplate> templates;
+    protected List<MovesTemplate> battleTemplates;
     protected int perksPoints;
 
     //Constructors
@@ -24,7 +21,7 @@ public class Pokemon extends AbstractPokemon implements Serializable {
         experience = 0;
         perks = new ArrayList<PokePerks>();
         perksPoints = 0;
-        chosenTemplate = new MovesTemplate("default");
+
     }
     public Pokemon(String nameUrl){
         try {
@@ -63,17 +60,12 @@ public class Pokemon extends AbstractPokemon implements Serializable {
     public List<PokePerks> getPerks() {
         return perks;
     }
-    public MovesTemplate getChosenTemplate(){
-        return chosenTemplate;
-    }
-    public void setChosenTemplate(MovesTemplate template){
-        chosenTemplate = template;
-    }
+
     public void addTemplates(MovesTemplate movesTemplate){
-        templates.add(movesTemplate);
+        battleTemplates.add(movesTemplate);
     }
     public List<MovesTemplate> getTemplates(){
-        return templates;
+        return battleTemplates;
     }
     public long getExperience(){
         return experience;

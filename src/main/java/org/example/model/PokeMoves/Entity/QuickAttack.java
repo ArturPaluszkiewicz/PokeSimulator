@@ -1,19 +1,18 @@
 package org.example.model.PokeMoves.Entity;
 
-import org.example.model.PokeMoves.AttackFlag;
-import org.example.model.PokeMoves.AttackMove;
 import org.example.model.PokeMoves.PokeMoves;
-import org.example.model.PokeMoves.ScaleFlag;
 import org.example.model.Pokemons.AbstractPokemon;
 import org.example.model.Pokemons.PokeType;
+import org.example.model.Pokemons.Pokemon;
 
 import java.io.Serializable;
 
 public class QuickAttack extends PokeMoves implements Serializable {
     private int basicDamage = 10;
     private int finalDamage = 0;
-    public QuickAttack(int lvl) {
-        super("Quick Attack", "Bardzo szybki atak", lvl, PokeType.Normal);
+    public QuickAttack(int lvl, Pokemon parent) {
+        super("Quick Attack", "Bardzo szybki atak", lvl, PokeType.Normal, parent);
+        initiative = 120;
         scale();
     }
 
@@ -23,10 +22,10 @@ public class QuickAttack extends PokeMoves implements Serializable {
     }
 
     @Override
-    public String useMove(AbstractPokemon pokeToBuff, AbstractPokemon pokeToAttack) {
-        int attack = getValue()+pokeToBuff.getAttack();
+    public String useMove(AbstractPokemon pokeToAttack) {
+        int attack = getValue()+parent.getAttack();
         int dmg = pokeToAttack.takeHit(attack);
-        return ("Pokemon "+ pokeToBuff.getName() +" uzył Quick Attack i zadał "+ pokeToAttack.getName() +" "+ dmg +" obrazen");
+        return (parent.getName() +" uzył Quick Attack i zadał "+ pokeToAttack.getName() +" "+ dmg +" obrazen\n");
     }
 
     @Override

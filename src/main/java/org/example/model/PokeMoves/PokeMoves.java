@@ -2,37 +2,24 @@ package org.example.model.PokeMoves;
 
 import org.example.model.Pokemons.AbstractPokemon;
 import org.example.model.Pokemons.PokeType;
-
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import org.example.model.Pokemons.Pokemon;
 
 public abstract class PokeMoves {
 
     protected String name, description;
+    protected Pokemon parent;
     protected PokeType type;
-    protected int lvl;
+    protected int lvl, initiative;
     protected int basicDamage = 25;
     protected int addingDmg = 0;
     protected int finalDamage = 0;
 
-    public PokeMoves(String name, String description, int lvl, PokeType type) {
+    public PokeMoves(String name, String description, int lvl, PokeType type, Pokemon parent) {
         this.name=name;
         this.description=description;
         setLvl(lvl);
         this.type=type;
-    }
-    public PokeMoves(String urlName){
-        try {
-            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("C:\\Users\\arti_\\IdeaProjects\\PokeSimulator\\src\\main\\resources\\PokeMoves\\"+urlName));
-            AttackMove pokeMoves = (AttackMove) inputStream.readObject();
-            name=pokeMoves.name;
-            description=pokeMoves.description;
-            lvl=pokeMoves.lvl;
-            type=pokeMoves.type;
-            inputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.parent = parent;
     }
     public String getName(){
         return name;
@@ -51,9 +38,11 @@ public abstract class PokeMoves {
     }
     public PokeType getType(){return type;}
     public abstract int getValue();
-    public abstract String useMove(AbstractPokemon pokeToBuff, AbstractPokemon pokeToAttack);
+    public abstract String useMove(AbstractPokemon pokemonToAttack);
     protected abstract void scale();
     public int getLvl() {
         return lvl;
     }
+
+    public int getInitiative(){return initiative;};
 }

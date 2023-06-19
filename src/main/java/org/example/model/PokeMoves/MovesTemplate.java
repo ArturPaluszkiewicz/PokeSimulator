@@ -1,5 +1,7 @@
 package org.example.model.PokeMoves;
 
+import java.util.Optional;
+
 public class MovesTemplate {
     private String name;
     private int firstMoveRound,secondMoveRound,thirdMoveRound,fourthMoveRound;
@@ -24,17 +26,17 @@ public class MovesTemplate {
         }
         return false;
     }
-    public PokeMoves getMove(int nrOfRound){
+    public Optional<PokeMoves> getMove(int nrOfRound){
         if(firstMoveRound==nrOfRound){
-            return firstMove;
+            return Optional.ofNullable(firstMove);
         } else if (secondMoveRound==nrOfRound) {
-            return secondMove;
+            return Optional.ofNullable(secondMove);
         } else if (thirdMoveRound==nrOfRound) {
-            return thirdMove;
+            return Optional.ofNullable(thirdMove);
         } else if (fourthMoveRound==nrOfRound) {
-            return fourthMove;
+            return Optional.ofNullable(fourthMove);
         }
-        return null;
+        return Optional.empty();
     }
     public String getName() {
         return name;
